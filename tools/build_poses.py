@@ -31,9 +31,9 @@ CHARS = {
     'Rina':  dict(r1=35, r2=33, r3=24, r4=31),
     'Nina':  dict(r1=27, r2=38, r3=53, r4=50),
 }
-MOTORS = {  # sheet motor + penumpang
-    'Udin': 11, 'Rina': 32, 'Rizky': 43, 'Dewi': 46, 'Agus': 47,
-    'Joko': 49, 'Siti': 52, 'Maya': 54, 'Nina': 55, 'Budi': 56,
+MOTORS = {  # hanya sheet yang bersih; sisanya dibuang (terpotong): Udin 11, Dewi 46, Agus 47, Joko 49, Nina 55, Budi 56
+  # sheet motor + penumpang
+    'Rina': 32, 'Rizky': 43, 'Siti': 52, 'Maya': 54,
 }
 EXTRA = {  # nama: (indeks, nama pose, opsi)
     'Pedagang_A': (51, ['stall', 'walkA', 'walkB', 'talk', 'open', 'angry'], {}),
