@@ -13,7 +13,7 @@ job.beats.forEach((b,i)=>{const nm=`beat_${String(i).padStart(2,'0')}`;const f=[
 // words.json (hasil Whisper): {"beats":[[[mulai,akhir],...per kata],...]} relatif ke awal audio beat
 const wj=path.join(dir,'words.json');if(fs.existsSync(wj)){const W=JSON.parse(fs.readFileSync(wj,'utf8')).beats||[];job.beats.forEach((b,i)=>{if(W[i])b.wt=W[i]});console.log('words.json dipakai:',W.length,'beat')}
 job.beats[job.beats.length-1].punch=true;
-const NEED=[...new Set([...job.cast,...(job.extras||[])])];const PD=path.join(__dirname,'sprites/poses');const hasPose=n=>fs.existsSync(path.join(PD,n,'poses.json'));
+const NEED=[...new Set([...job.cast,...(job.extras||[]),...(job.scenes||[]).flatMap(s=>(s.npc||[]).map(o=>o.n))])];const PD=path.join(__dirname,'sprites/poses');const hasPose=n=>fs.existsSync(path.join(PD,n,'poses.json'));
 for(const n of NEED)if(!sprites[n]&&!hasPose(n))throw new Error('Sprite tidak ada untuk karakter: '+n);
 async function open(){const b=await pw.chromium.launch({executablePath:CHROME,args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist','--enable-webgl']});
  const p=await b.newPage({viewport:{width:W,height:H}});p.on('pageerror',e=>console.log('pageerror:',e.message.slice(0,400)));
