@@ -211,6 +211,13 @@ window.addSprite=async(name,uri,variant)=>{const img=new Image();img.src=uri;awa
  gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
  (window.STEX[name]=window.STEX[name]||{})[variant||'n_0']=tex;if(variant)return;window.IMGS[name]=img;if(!JOB.cast.includes(name))return;
  const m=window.SMETA[name];add(box(1,1,.02),I(),[1,1,1],{tex,unlit:true,cut:true,shadow:false});window.SPR[name]={obj:objs[objs.length-1],w:m.w*PXS,h:m.h*PXS}};
+// ---------- pose registry (sprites/poses/<Nama>/<pose>.png)
+const KP=2.05/600;window.POSES={};
+window.addPose=async(name,pose,uri,w,h,ax)=>{const img=new Image();img.src=uri;await img.decode();(window.POSES[name]=window.POSES[name]||{})[pose]={img,w,h,ax,t:null,tf:null,hue:0}};
+function ptex(p,flip){const k=flip?'tf':'t';if(p[k])return p[k];const img=p.img;const t=mkTex(img.width,img.height,g=>{if(p.hue)g.filter=`hue-rotate(${p.hue}deg) saturate(1.1)`;if(flip){g.translate(img.width,0);g.scale(-1,1)}g.drawImage(img,0,0)});
+ gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return p[k]=t}
+// matriks sprite pose: jangkar kaki (ax) di titik (x,y,z), flip = cermin
+function poseM(p,flip,x,y,z,rz,sx,sy){const ax=flip?p.w-p.ax:p.ax;return M(T(x,y,z),RZ(rz),S(p.w*KP*sx,p.h*KP*sy,1),T(.5-ax/p.w,.5,0))}
 // ---------- timeline
 const CAST=JOB.cast;const NC=CAST.length;
 const LAYS={1:[0],2:[-1.05,1.05],3:[-1.85,0,1.85],4:[-2.9,-1,1,2.9]};
@@ -220,6 +227,7 @@ const GAP=.28,LEAD=.5;let cur=LEAD;
 const BEATS=JOB.beats.map((b,i)=>{const words=b.text.trim().split(/\s+/);const wt=words.map(w=>w.length+2);const tot=wt.reduce((a,c)=>a+c,0);const st=cur,en=cur+b.dur;let acc=0;
  const ws=words.map((w,k)=>{const s=st+acc/tot*b.dur;acc+=wt[k];const R=b.wt&&b.wt.length===words.length?b.wt[k]:null;return R?[w.toUpperCase(),st+R[0],st+R[1]]:[w.toUpperCase(),s]});cur=en+GAP;return{...b,st,en,ws,i}});
 const TOTAL=cur+.5;window.TOTAL=TOTAL;
+{let cp={},cn={},ls=-1;BEATS.forEach(b=>{const s=b.scene||0;if(s!==ls){cp={};cn={};ls=s}if(b.pose)Object.assign(cp,b.pose);if(b.npc)Object.assign(cn,b.npc);b.pm={...cp};b.nm={...cn}})}
 const sm=x=>x*x*(3-2*x);
 SCN.forEach((s,si)=>{const bs=BEATS.filter(b=>(b.scene||0)===si);bs.forEach((b,k)=>b.k=k);s.t0=si===0?0:(bs.length?bs[0].st-.05:0);s.t1=bs.length?(si===SCN.length-1?TOTAL:bs[bs.length-1].en+.1):0;
  const lay=LAYS[Math.min(s.who.length,4)]||[0];s.init={};s.segs={};
@@ -227,9 +235,9 @@ SCN.forEach((s,si)=>{const bs=BEATS.filter(b=>(b.scene||0)===si);bs.forEach((b,k
  const cp={};s.who.forEach(n=>cp[n]=s.init[n].slice());
  bs.forEach(b=>{if(!b.go)return;for(const n in b.go){if(!cp[n])continue;const to=Array.isArray(b.go[n])?b.go[n]:[b.go[n],cp[n][1]];const d=Math.hypot(to[0]-cp[n][0],to[1]-cp[n][1]);const dur=Math.max(.6,d/(b.speed||2.2));s.segs[n].push({t0:b.st,t1:b.st+dur,from:cp[n].slice(),to:to.slice()});cp[n]=to.slice()}})});
 function stOf(n,sc,t){if(!sc.who.includes(n))return null;
- if(sc.ride){const R=sc.ride,seat=(sc.seat&&sc.seat[n])||[0,0,1,0];const cx=R.dir*R.v*(t-(sc.t0+sc.t1)/2);return{x:cx+seat[0],z:4.6+seat[1],y:.09+(seat[3]||0),crop:seat[2]===undefined?1:seat[2],walk:0,ride:1,cx}}
- let p=sc.init[n].slice(),walk=0;for(const g of sc.segs[n]){if(t>=g.t1)p=g.to.slice();else if(t>g.t0){const u=sm((t-g.t0)/(g.t1-g.t0));p=[g.from[0]+(g.to[0]-g.from[0])*u,g.from[1]+(g.to[1]-g.from[1])*u];walk=1;break}else break}
- return{x:p[0],z:p[1],y:sc.cnt?.93:.22,crop:1,walk,ride:0}}
+ if(sc.ride){const R=sc.ride,seat=(sc.seat&&sc.seat[n])||[0,0,1,0];const cx=R.dir*R.v*(t-(sc.t0+sc.t1)/2);return{x:cx+seat[0],z:4.6+seat[1],y:.09+(seat[3]||0),crop:seat[2]===undefined?1:seat[2],walk:0,ride:1,cx,dx:R.dir}}
+ let p=sc.init[n].slice(),walk=0,dx=0;for(const g of sc.segs[n]){if(t>=g.t1)p=g.to.slice();else if(t>g.t0){const u=sm((t-g.t0)/(g.t1-g.t0));p=[g.from[0]+(g.to[0]-g.from[0])*u,g.from[1]+(g.to[1]-g.from[1])*u];walk=1;dx=g.to[0]-g.from[0];break}else break}
+ return{x:p[0],z:p[1],y:sc.cnt?.93:.22,crop:1,walk,ride:0,dx}}
 function camFor(b,t){const sc=SCN[b.scene||0],k=Math.max(0,t-b.st);const sp=stOf(b.speaker,sc,t);
  const wide=b.shot?b.shot==='wide':(!sp||b.k===0||b.k%4===3);
  if(sc.ride){const cx=stOf(sc.who[0],sc,t).cx;return wide?{x:cx,y:2.1,z:4.6,d:11-Math.min(k,3)*.3}:{x:sp.x,y:2.0,z:4.6,d:7.6-Math.min(k,3)*.3}}
@@ -248,24 +256,52 @@ function faceOf(n,i,t,b){const T=window.STEX[n];if(!T)return null;const sp=b.spe
  let key=ex+'_'+m;if(ex==='n'&&m==='0'){const c=(t+i*1.1)%3.4;if(c<.13&&T.blink)key='blink'}
  return T[key]||T.n_0}
 // figuran
-window.EXT=[];
-window.initExtras=()=>{SCN.forEach((sc,si)=>{const N=sc.crowd||0;const pool=(JOB.extras||[]).filter(n=>window.IMGS[n]);if(!N||!pool.length)return;
- for(let k=0;k<N;k++){const n=pool[k%pool.length];const hue=[40,120,200,280,330,80][(k*5+si)%6];const img=window.IMGS[n];
+window.EXT=[];window.NPCS=[];
+window.initExtras=()=>{SCN.forEach((sc,si)=>{const N=sc.crowd||0;const pool=(JOB.extras||[]).filter(n=>window.IMGS[n]||window.POSES[n]);if(!N||!pool.length)return;
+ for(let k=0;k<N;k++){const n=pool[k%pool.length];const hue=[40,120,200,280,330,80][(k*5+si)%6];
+  if(window.POSES[n]){const P=window.POSES[n];const pick=(...a)=>a.find(x=>P[x]);const ka=pick('side_walkA','walkA','walk','run','stand','front'),kb=pick('side_walkB','walkB')||ka;
+   const cl=q=>({...P[q],t:null,tf:null,hue});const pa=cl(ka),pb=cl(kb);
+   add(box(1,1,.02),I(),[1,1,1],{tex:ptex(pa,false),unlit:true,cut:true,shadow:false});
+   window.EXT.push({sc:si,obj:objs[objs.length-1],pa,pb,cx:-7+k*(14/Math.max(1,N-1))+(rnd()-.5)*1.2,amp:.8+rnd()*1.8,sp:.25+rnd()*.35,ph:rnd()*6.3,z:1.0+(k%3)*.5,s:.8+.14*(k%2)+rnd()*.06});continue}
+  const img=window.IMGS[n];
   const tex=mkTex(img.width,img.height,g=>{g.filter=`hue-rotate(${hue}deg) saturate(1.1)`;g.drawImage(img,0,0)});
   gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
   add(box(1,1,.02),I(),[1,1,1],{tex,unlit:true,cut:true,shadow:false});const m=window.SMETA[n];
   window.EXT.push({sc:si,obj:objs[objs.length-1],w:m.w*PXS,h:m.h*PXS,cx:-7+k*(14/Math.max(1,N-1))+(rnd()-.5)*1.2,amp:.8+rnd()*1.8,sp:.25+rnd()*.35,ph:rnd()*6.3,z:1.0+(k%3)*.5,s:.78+.14*(k%2)+rnd()*.06})}})};
-window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;window.ANIM.forEach(f=>f(t));window.BIKES.forEach(k=>{const span=30;const x=k.dir>0?-15+((t*k.v+k.off)%span):15-((t*k.v+k.off)%span);placeBike(k.P,x,0,k.z,k.dir>0?Math.PI/2:-Math.PI/2)});const talking=t>=b.st&&t<=b.en?b.speaker:null;
+const seatOf=(sc,n)=>((sc.seat&&sc.seat[n])||[0])[0]||0;
+const STY={santai:['explain','front'],mengeluh:['shrug','hips'],kaget:['shock','shock'],sinis:['crossed','hips'],pasrah:['facepalm','scratch'],semangat:['laugh','wave']};
+function tgtX(n,sc,t,b,st){if(b.speaker!==n){const sp=stOf(b.speaker,sc,t);if(sp)return sp.x}let best=null,bd=1e9;sc.who.forEach(m=>{if(m===n)return;const o=stOf(m,sc,t);if(o){const d=Math.abs(o.x-st.x);if(d<bd){bd=d;best=o.x}}});return best===null?0:best}
+function poseFor(n,i,t,b,sc,st,isT){const P=window.POSES[n];let key='front',flip=false;
+ if(st.walk){key=(Math.floor(t*4.5+i)%2)?'side_walkB':'side_walkA';flip=st.dx<0}
+ else{const ex=b.pm&&b.pm[n];
+  if(ex&&P[ex])key=ex;
+  else if(isT){let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;const L=STY[b.style]||STY.santai;key=L[Math.floor(k/3)%2]}
+  else{const act=t>=b.st-.05&&t<=b.en+.4;key=(act&&b.style==='kaget')?'shock':(act&&b.style==='semangat'&&t-b.st<1.2)?'laugh':'front'}
+  if(!P[key])key='front';if(key.startsWith('side_'))flip=tgtX(n,sc,t,b,st)<st.x}
+ if(!P[key])key=Object.keys(P).find(k=>!k.startsWith('motor_'))||'front';
+ return{p:P[key],flip}}
+window.initNpcs=()=>{SCN.forEach((sc,si)=>(sc.npc||[]).forEach(o=>{const P=window.POSES[o.n];if(!P)return;const p=P[o.pose]||P[Object.keys(P)[0]];add(box(1,1,.02),I(),[1,1,1],{tex:ptex(p,false),unlit:true,cut:true,shadow:false});window.NPCS.push({sc:si,o,obj:objs[objs.length-1]})}))};
+window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;window.ANIM.forEach(f=>f(t));window.BIKES.forEach(k=>{const span=30;const x=k.dir>0?-15+((t*k.v+k.off)%span):15-((t*k.v+k.off)%span);placeBike(k.P,x,0,k.z,k.dir>0?Math.PI/2:-Math.PI/2)});const talking=t>=b.st&&t<=b.en?b.speaker:null;const rideMotor=sc.ride?CAST.find(n=>sc.who.includes(n)&&window.POSES[n]&&window.POSES[n].motor_R):null;
  CAST.forEach((n,i)=>{const s=window.SPR[n];if(!s)return;const st=stOf(n,sc,t);if(!st){s.obj.base=S(0,0,0);return}
   const ph=i*1.3;const isT=talking===n;const tk=isT?1+.03*Math.abs(Math.sin(t*13)):1;
   let hop=0,lean=0;if(isT){let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;const d=t-b.ws[k][1];hop=Math.max(0,1-d/.2)*.045*(b.style==='semangat'||b.style==='kaget'?1.8:1);const dirx=-Math.sign(st.x)||0;lean=dirx*.035+Math.sin(t*4)*.012}
   const wk=st.walk?Math.abs(Math.sin(t*9+i)):0;const bob=Math.sin(t*3.2+ph)*.03*(st.ride?.3:1)+wk*.07+(st.ride?Math.sin(t*17+i)*.012:0);
   const sw=Math.sin(t*2.1+ph)*.02*(isT?2:1)+lean+(st.walk?Math.sin(t*9+i)*.04:0);
   const u=Math.max(0,Math.min(1,(t-sc.t0-.1*i)/.35));const pop=.6+.4*sm(u)+Math.sin(u*Math.PI)*.08;
+  const PZ=window.POSES[n];
+  if(PZ){
+   if(sc.ride&&rideMotor){if(n!==rideMotor){s.obj.base=S(0,0,0);return}
+    const mp=PZ[st.dx>0?'motor_R':'motor_L'];s.obj.tex=ptex(mp,false);s.obj.crop=1;const rb=Math.sin(t*17)*.012+Math.sin(t*3.2)*.01;
+    s.obj.base=poseM(mp,false,st.x-(seatOf(sc,rideMotor)),st.y+rb,st.z,0,pop,pop);return}
+   const pr=poseFor(n,i,t,b,sc,st,isT);s.obj.tex=ptex(pr.p,pr.flip);s.obj.crop=1;
+   s.obj.base=poseM(pr.p,pr.flip,st.x,st.y+bob+hop,st.z,sw,pop,pop*tk);return}
   const f=faceOf(n,i,t,b);if(f)s.obj.tex=f;
   const hh=s.h*pop*tk;s.obj.crop=st.crop;
   s.obj.base=M(T(st.x,st.y+(st.crop<1?hh*(1-st.crop):0)+bob+hop,st.z),RZ(sw),S(s.w*pop,hh*st.crop,1),T(0,.5,0))});
+ window.NPCS.forEach(e=>{if(e.sc!==si){e.obj.base=S(0,0,0);return}const P=window.POSES[e.o.n];const key=(b.nm&&b.nm[e.o.n])||e.o.pose||Object.keys(P)[0];const p=P[key]||P[Object.keys(P)[0]];const fl=(e.o.face||1)<0;e.obj.tex=ptex(p,fl);const u=Math.max(0,Math.min(1,(t-sc.t0)/.4));
+  e.obj.base=poseM(p,fl,e.o.x,sc.cnt?.93:.22,e.o.z||2.9,Math.sin(t*2+e.o.x)*.01,(e.o.s||1)*u,(e.o.s||1)*u)});
  window.EXT.forEach(e=>{if(e.sc!==si){e.obj.base=S(0,0,0);return}const x=e.cx+e.amp*Math.sin(t*e.sp+e.ph),bob=Math.abs(Math.sin(t*e.sp*7+e.ph))*.05;const u=Math.max(0,Math.min(1,(t-sc.t0)/.4));
+  if(e.pa){const dr=Math.cos(t*e.sp+e.ph)<0;const p=(Math.floor(t*e.sp*14+e.ph)%2)?e.pb:e.pa;e.obj.tex=ptex(p,dr);e.obj.base=poseM(p,dr,x,(sc.cnt?.93:.22)+bob,e.z,Math.sin(t*e.sp*7+e.ph)*.03,e.s*u,e.s*u);return}
   e.obj.base=M(T(x,(sc.cnt?.93:.22)+bob,e.z),RZ(Math.sin(t*e.sp*7+e.ph)*.03),S(e.w*e.s*u,e.h*e.s*u,1),T(0,.5,0))})};
 window.CAP=t=>{if(t<0||t>TOTAL-.5)return'';for(const b of BEATS){if(t>=b.st&&t<b.en+.1){let w='';for(const [x,s] of b.ws)if(t>=s)w=x;return w}}return''};
 // ---------- render
