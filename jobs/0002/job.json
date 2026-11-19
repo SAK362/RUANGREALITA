@@ -18,8 +18,8 @@
  "scenes": [
   {
    "loc": "jalan",
-   "bab": "Bab 1 · Di jalan",
-   "judul": "Menuju *pasar*",
+   "bab": "",
+   "judul": "Di *jalan*",
    "who": [
     "Udin",
     "Rina"
@@ -35,12 +35,13 @@
      0.62,
      0.12
     ]
-   }
+   },
+   "ket": "Udin antar Bu Rina ke pasar"
   },
   {
    "loc": "pasar",
-   "bab": "Bab 2 · Di pasar",
-   "judul": "Tawar-menawar *cabai*",
+   "bab": "",
+   "judul": "Di *pasar*",
    "crowd": 9,
    "who": [
     "Nina",
@@ -81,23 +82,25 @@
      "pose": "stall",
      "face": -1
     }
-   ]
+   ],
+   "ket": "Tawar-menawar harga cabai"
   },
   {
    "loc": "warkop",
-   "bab": "Bab 3 · Di warkop",
-   "judul": "Ngopi dan *ngeluh*",
+   "bab": "",
+   "judul": "Di *warkop*",
    "crowd": 3,
    "who": [
     "Siti",
     "Budi",
     "Joko"
-   ]
+   ],
+   "ket": "Ngopi sambil mengeluh"
   },
   {
    "loc": "jalan",
-   "bab": "Bab 4 · Pulang",
-   "judul": "Ambil *kesimpulan*",
+   "bab": "",
+   "judul": "Di *jalan*",
    "who": [
     "Budi",
     "Joko"
@@ -111,7 +114,8 @@
      0.4,
      2.9
     ]
-   }
+   },
+   "ket": "Pulang dan ambil kesimpulan"
   }
  ],
  "beats": [

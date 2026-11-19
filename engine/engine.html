@@ -212,7 +212,7 @@ window.addSprite=async(name,uri,variant)=>{const img=new Image();img.src=uri;awa
  (window.STEX[name]=window.STEX[name]||{})[variant||'n_0']=tex;if(variant)return;window.IMGS[name]=img;if(!JOB.cast.includes(name))return;
  const m=window.SMETA[name];add(box(1,1,.02),I(),[1,1,1],{tex,unlit:true,cut:true,shadow:false});window.SPR[name]={obj:objs[objs.length-1],w:m.w*PXS,h:m.h*PXS}};
 // ---------- pose registry (sprites/poses/<Nama>/<pose>.png)
-const KP=2.05/600;window.POSES={};
+const KP=2.05/600;const HF={Budi:1,Udin:.97,Joko:1.01,Agus:1.03,Rizky:.93,Siti:.93,Dewi:.94,Maya:.92,Rina:.93,Nina:.91};window.POSES={};
 window.addPose=async(name,pose,uri,w,h,ax,mouth)=>{const img=new Image();img.src=uri;await img.decode();(window.POSES[name]=window.POSES[name]||{})[pose]={img,w,h,ax,mouth:mouth||null,hue:0}};
 function ptex(p,flip,mo){mo=p.mouth?(mo||''):'';const k=(flip?'f':'n')+mo;p.T=p.T||{};if(p.T[k])return p.T[k];const img=p.img;const t=mkTex(img.width,img.height,g=>{if(p.hue)g.filter=`hue-rotate(${p.hue}deg) saturate(1.1)`;if(flip){g.translate(img.width,0);g.scale(-1,1)}g.drawImage(img,0,0);g.filter='none';
   if(mo){let [cx,cy,mw,mh]=p.mouth;if(flip)cx=img.width-cx;g.fillStyle='#fff';g.beginPath();g.ellipse(cx,cy,mw*.75+3,mh*1.1+3,0,0,7);g.fill();
@@ -241,7 +241,7 @@ SCN.forEach((s,si)=>{const bs=BEATS.filter(b=>(b.scene||0)===si);bs.forEach((b,k
 function stOf(n,sc,t){if(!sc.who.includes(n))return null;
  if(sc.ride){const R=sc.ride,seat=(sc.seat&&sc.seat[n])||[0,0,1,0];const cx=R.dir*R.v*(t-(sc.t0+sc.t1)/2);return{x:cx+seat[0],z:4.6+seat[1],y:.09+(seat[3]||0),crop:seat[2]===undefined?1:seat[2],walk:0,ride:1,cx,dx:R.dir}}
  let p=sc.init[n].slice(),walk=0,dx=0;for(const g of sc.segs[n]){if(t>=g.t1)p=g.to.slice();else if(t>g.t0){const u=sm((t-g.t0)/(g.t1-g.t0));p=[g.from[0]+(g.to[0]-g.from[0])*u,g.from[1]+(g.to[1]-g.from[1])*u];walk=1;dx=g.to[0]-g.from[0];break}else break}
- return{x:p[0],z:p[1],y:sc.cnt?.93:.22,crop:1,walk,ride:0,dx}}
+ return{x:p[0],z:p[1],y:sc.cnt?.03:.22,crop:1,walk,ride:0,dx}}
 function camFor(b,t){const sc=SCN[b.scene||0],k=Math.max(0,t-b.st);const sp=stOf(b.speaker,sc,t);
  const wide=b.shot?b.shot==='wide':(!sp||b.k===0||b.k%4===3);
  if(sc.ride){const cx=stOf(sc.who[0],sc,t).cx;return wide?{x:cx,y:2.1,z:4.6,d:11-Math.min(k,3)*.3}:{x:sp.x,y:2.0,z:4.6,d:7.6-Math.min(k,3)*.3}}
@@ -273,17 +273,18 @@ window.initExtras=()=>{SCN.forEach((sc,si)=>{const N=sc.crowd||0;const pool=(JOB
   add(box(1,1,.02),I(),[1,1,1],{tex,unlit:true,cut:true,shadow:false});const m=window.SMETA[n];
   window.EXT.push({sc:si,obj:objs[objs.length-1],w:m.w*PXS,h:m.h*PXS,cx:-7+k*(14/Math.max(1,N-1))+(rnd()-.5)*1.2,amp:.8+rnd()*1.8,sp:.25+rnd()*.35,ph:rnd()*6.3,z:1.0+(k%3)*.5,s:.78+.14*(k%2)+rnd()*.06})}})};
 const seatOf=(sc,n)=>((sc.seat&&sc.seat[n])||[0])[0]||0;
-const STY={santai:['explain','front'],mengeluh:['shrug','hips'],kaget:['shock','shock'],sinis:['crossed','hips'],pasrah:['facepalm','scratch'],semangat:['laugh','wave']};
+const STY={santai:['explain','point','front','hips','explain','shrug'],mengeluh:['shrug','hips','scratch','facepalm','shrug','crossed'],kaget:['shock','explain','wave','point','shock','hips'],sinis:['crossed','hips','point','shrug','crossed','explain'],pasrah:['shrug','facepalm','hips','scratch','shrug','front'],semangat:['wave','explain','laugh','point','thumb','hips']};
+const REAK={kaget:'shock',semangat:'laugh',sinis:'crossed',mengeluh:'hips',pasrah:'shrug'};
 function tgtX(n,sc,t,b,st){if(b.speaker!==n){const sp=stOf(b.speaker,sc,t);if(sp)return sp.x}let best=null,bd=1e9;sc.who.forEach(m=>{if(m===n)return;const o=stOf(m,sc,t);if(o){const d=Math.abs(o.x-st.x);if(d<bd){bd=d;best=o.x}}});return best===null?0:best}
-function poseFor(n,i,t,b,sc,st,isT){const P=window.POSES[n];let key='front',flip=false;
+function poseFor(n,i,t,b,sc,st,isT){const P=window.POSES[n];let key='front',flip=false,acc=0;
  if(st.walk){key=(Math.floor(t*4.5+i)%2)?'side_walkB':'side_walkA';flip=st.dx<0}
  else{const ex=b.pm&&b.pm[n];
   if(ex&&P[ex])key=ex;
-  else if(isT){let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;const L=STY[b.style]||STY.santai;key=L[Math.floor(k/3)%2]}
-  else{const act=t>=b.st-.05&&t<=b.en+.4;key=(act&&b.style==='kaget')?'shock':(act&&b.style==='semangat'&&t-b.st<1.2)?'laugh':'front'}
+  else if(isT){let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;const L=STY[b.style]||STY.santai;const gi=Math.floor(k/2);key=L[(gi+b.i)%L.length];acc=Math.max(0,1-(t-b.ws[Math.min(b.ws.length-1,gi*2)][1])/.16)}
+  else{const act=t>=b.st-.05&&t<=b.en+.4;key=(act&&t-b.st<1.6&&REAK[b.style])?REAK[b.style]:'front'}
   if(!P[key])key='front';if(key.startsWith('side_'))flip=tgtX(n,sc,t,b,st)<st.x}
  if(!P[key])key=Object.keys(P).find(k=>!k.startsWith('motor_'))||'front';
- return{p:P[key],flip}}
+ return{p:P[key],flip,acc}}
 window.initNpcs=()=>{SCN.forEach((sc,si)=>(sc.npc||[]).forEach(o=>{const P=window.POSES[o.n];if(!P)return;const p=P[o.pose]||P[Object.keys(P)[0]];add(box(1,1,.02),I(),[1,1,1],{tex:ptex(p,false),unlit:true,cut:true,shadow:false});window.NPCS.push({sc:si,o,obj:objs[objs.length-1]})}))};
 window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;window.ANIM.forEach(f=>f(t));window.BIKES.forEach(k=>{const span=30;const x=k.dir>0?-15+((t*k.v+k.off)%span):15-((t*k.v+k.off)%span);placeBike(k.P,x,0,k.z,k.dir>0?Math.PI/2:-Math.PI/2)});const talking=t>=b.st&&t<=b.en?b.speaker:null;const rideMotor=sc.ride?CAST.find(n=>sc.who.includes(n)&&window.POSES[n]&&window.POSES[n].motor_R):null;
  CAST.forEach((n,i)=>{const s=window.SPR[n];if(!s)return;const st=stOf(n,sc,t);if(!st){s.obj.base=S(0,0,0);return}
@@ -299,7 +300,8 @@ window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;windo
     const tp=(talking&&sc.who.includes(talking))?1:0,wd=tp?(()=>{let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;return Math.max(0,1-(t-b.ws[k][1])/.18)})():0;
     s.obj.base=poseM(mp,false,st.x-(seatOf(sc,rideMotor)),st.y+rb+wd*.03,st.z,tp*Math.sin(t*9)*.006,pop,pop*(1+wd*.012));return}
    const pr=poseFor(n,i,t,b,sc,st,isT);s.obj.tex=ptex(pr.p,pr.flip,isT&&!st.walk?mouthAt(b,t):'');s.obj.crop=1;
-   s.obj.base=poseM(pr.p,pr.flip,st.x,st.y+bob+hop,st.z,sw,pop,pop*tk);return}
+   const hf=HF[n]||1;const nod=(!isT&&!st.walk&&t>=b.st&&t<=b.en)?Math.abs(Math.sin(t*3.6+i))*.014:0;const tsw=isT&&!st.walk?Math.sin(t*5.2)*.022+pr.acc*(pr.flip?-.02:.02):0;
+   s.obj.base=poseM(pr.p,pr.flip,st.x,st.y+bob+hop+nod+pr.acc*.03,st.z,sw+tsw,pop*hf*(1-pr.acc*.01),pop*tk*hf*(1+pr.acc*.03));return}
   const f=faceOf(n,i,t,b);if(f)s.obj.tex=f;
   const hh=s.h*pop*tk;s.obj.crop=st.crop;
   s.obj.base=M(T(st.x,st.y+(st.crop<1?hh*(1-st.crop):0)+bob+hop,st.z),RZ(sw),S(s.w*pop,hh*st.crop,1),T(0,.5,0))});
@@ -328,12 +330,14 @@ function renderFrame(t){
  const oc=document.getElementById('out');oc.width=W;oc.height=H;const g=oc.getContext('2d');g.drawImage(cv,0,0);g.textAlign='center';g.lineJoin='round';
  const cap=window.CAP(t);if(cap){g.font=`700 ${Math.round(W*.085)}px Poppins, sans-serif`;g.lineWidth=W*.012;g.strokeStyle='#000';g.fillStyle='#fff';g.strokeText(cap,W/2,H*.66);g.fillText(cap,W/2,H*.66)}
  {const sc=SCN[beatAt(t).scene||0];const tg=sc.tag||(LOCS[sc.loc]||{}).sign||'';const ta=t-sc.t0;
-  {const si2=beatAt(t).scene||0,N2=SCN.length,ta=t-sc.t0,k=sm(Math.min(1,Math.max(0,ta/.5)));const pw=W*.6,ph=H*.088,py=H*.03,ox=-(1-k)*pw;
+  {const si2=beatAt(t).scene||0,N2=SCN.length,ta=t-sc.t0,k=sm(Math.min(1,Math.max(0,ta/.5)));
+  const F1=`700 ${Math.round(W*.045)}px Poppins, sans-serif`,F2=`500 ${Math.round(W*.027)}px Poppins, sans-serif`;
+  g.textAlign='left';g.font=F1;const w1=g.measureText((sc.judul||'').replace(/\*/g,'')).width;g.font=F2;const w2=sc.ket?g.measureText(sc.ket).width:0;
+  const tx=W*.045,pw=Math.min(W*.8,Math.max(w1,w2)+tx+W*.05),ph=H*(sc.ket?.075:.055),py=H*.03,ox=-(1-k)*pw;
   g.save();g.translate(ox,0);g.fillStyle='rgba(238,236,224,.95)';g.beginPath();g.roundRect(-40,py,pw+40,ph,[0,ph*.28,ph*.28,0]);g.fill();
-  const tx=W*.045;g.textAlign='left';g.textBaseline='alphabetic';g.fillStyle='#4a4f4a';g.font=`700 ${Math.round(W*.0235)}px "DejaVu Sans Mono", monospace`;try{g.letterSpacing=Math.round(W*.0045)+'px'}catch(e){}
-  g.fillText((sc.bab||tg||'').toUpperCase(),tx,py+ph*.30);try{g.letterSpacing='0px'}catch(e){}
-  g.font=`700 ${Math.round(W*.045)}px Poppins, sans-serif`;let xx=tx;const yy=py+ph*.66;(sc.judul||'').split('*').forEach((seg,q)=>{g.fillStyle=q%2?'#1d7a5a':'#1b2420';g.fillText(seg,xx,yy);xx+=g.measureText(seg).width});
-  const dw=pw*.62/N2,dy=py+ph*.86;for(let q=0;q<N2;q++){g.fillStyle=q<si2?'#1d7a5a':q===si2?'#1d7a5a':'#b9b8aa';g.beginPath();g.roundRect(tx+q*dw,dy,dw-W*.012,H*.0055,H*.003);g.fill();if(q===si2){g.fillStyle='rgba(255,255,255,.55)';g.beginPath();g.roundRect(tx+q*dw,dy,(dw-W*.012)*Math.min(1,(t-sc.t0)/Math.max(1,sc.t1-sc.t0)),H*.0055,H*.003);g.fill()}}
+  g.textBaseline='alphabetic';g.font=F1;let xx=tx;const yy=py+ph*(sc.ket?.5:.68);(sc.judul||'').split('*').forEach((seg,q)=>{g.fillStyle=q%2?'#1d7a5a':'#1b2420';g.fillText(seg,xx,yy);xx+=g.measureText(seg).width});
+  if(sc.ket){g.font=F2;g.fillStyle='#5a605a';g.fillText(sc.ket,tx,py+ph*.84)}
+  const dw=pw*.62/N2,dy=py+ph*.86;if(sc.bab)for(let q=0;q<N2;q++){g.fillStyle=q<si2?'#1d7a5a':q===si2?'#1d7a5a':'#b9b8aa';g.beginPath();g.roundRect(tx+q*dw,dy,dw-W*.012,H*.0055,H*.003);g.fill();if(q===si2){g.fillStyle='rgba(255,255,255,.55)';g.beginPath();g.roundRect(tx+q*dw,dy,(dw-W*.012)*Math.min(1,(t-sc.t0)/Math.max(1,sc.t1-sc.t0)),H*.0055,H*.003);g.fill()}}
   g.restore();g.textAlign='center'}
   const fa=Math.max(0,1-(t-sc.t0)/.3,1-(sc.t1-t)/.25);if(fa>0){g.fillStyle=`rgba(0,0,0,${Math.min(1,fa)})`;g.fillRect(0,0,W,H)}}
  g.textAlign='right';g.font=`700 ${Math.round(W*.04)}px Poppins, sans-serif`;g.lineWidth=W*.0065;g.strokeStyle='#000';g.fillStyle='rgba(255,255,255,.92)';g.strokeText('RuangRealita',W-W*.04,H*.045);g.fillText('RuangRealita',W-W*.04,H*.045);
