@@ -213,9 +213,13 @@ window.addSprite=async(name,uri,variant)=>{const img=new Image();img.src=uri;awa
  const m=window.SMETA[name];add(box(1,1,.02),I(),[1,1,1],{tex,unlit:true,cut:true,shadow:false});window.SPR[name]={obj:objs[objs.length-1],w:m.w*PXS,h:m.h*PXS}};
 // ---------- pose registry (sprites/poses/<Nama>/<pose>.png)
 const KP=2.05/600;window.POSES={};
-window.addPose=async(name,pose,uri,w,h,ax)=>{const img=new Image();img.src=uri;await img.decode();(window.POSES[name]=window.POSES[name]||{})[pose]={img,w,h,ax,t:null,tf:null,hue:0}};
-function ptex(p,flip){const k=flip?'tf':'t';if(p[k])return p[k];const img=p.img;const t=mkTex(img.width,img.height,g=>{if(p.hue)g.filter=`hue-rotate(${p.hue}deg) saturate(1.1)`;if(flip){g.translate(img.width,0);g.scale(-1,1)}g.drawImage(img,0,0)});
- gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return p[k]=t}
+window.addPose=async(name,pose,uri,w,h,ax,mouth)=>{const img=new Image();img.src=uri;await img.decode();(window.POSES[name]=window.POSES[name]||{})[pose]={img,w,h,ax,mouth:mouth||null,hue:0}};
+function ptex(p,flip,mo){mo=p.mouth?(mo||''):'';const k=(flip?'f':'n')+mo;p.T=p.T||{};if(p.T[k])return p.T[k];const img=p.img;const t=mkTex(img.width,img.height,g=>{if(p.hue)g.filter=`hue-rotate(${p.hue}deg) saturate(1.1)`;if(flip){g.translate(img.width,0);g.scale(-1,1)}g.drawImage(img,0,0);g.filter='none';
+  if(mo){let [cx,cy,mw,mh]=p.mouth;if(flip)cx=img.width-cx;g.fillStyle='#fff';g.beginPath();g.ellipse(cx,cy,mw*.75+3,mh*1.1+3,0,0,7);g.fill();
+   const rx=Math.max(mw*(mo==='b'?.46:.36),5),ry=rx*(mo==='b'?.95:.62);g.fillStyle='#4a1414';g.strokeStyle='#1a1a1a';g.lineWidth=Math.max(2,img.height/300);g.beginPath();g.ellipse(cx,cy+ry*.2,rx,ry,0,0,7);g.fill();g.stroke();
+   g.fillStyle='#c4585a';g.beginPath();g.ellipse(cx,cy+ry*.2+ry*.45,rx*.6,ry*.45,0,0,Math.PI);g.fill()}});
+ gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return p.T[k]=t}
+function mouthAt(b,t){if(t<b.st||t>b.en+.05)return'';let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;const ws=b.ws[k][1],we=b.ws[k][2]||(k+1<b.ws.length?b.ws[k+1][1]:b.en);const u=(t-ws)/Math.max(.05,we-ws);return u<.78?(((Math.floor(t*10)+k)%2)?'a':'b'):''}
 // matriks sprite pose: jangkar kaki (ax) di titik (x,y,z), flip = cermin
 function poseM(p,flip,x,y,z,rz,sx,sy){const ax=flip?p.w-p.ax:p.ax;return M(T(x,y,z),RZ(rz),S(p.w*KP*sx,p.h*KP*sy,1),T(.5-ax/p.w,.5,0))}
 // ---------- timeline
@@ -260,7 +264,7 @@ window.EXT=[];window.NPCS=[];
 window.initExtras=()=>{SCN.forEach((sc,si)=>{const N=sc.crowd||0;const pool=(JOB.extras||[]).filter(n=>window.IMGS[n]||window.POSES[n]);if(!N||!pool.length)return;
  for(let k=0;k<N;k++){const n=pool[k%pool.length];const hue=[40,120,200,280,330,80][(k*5+si)%6];
   if(window.POSES[n]){const P=window.POSES[n];const pick=(...a)=>a.find(x=>P[x]);const ka=pick('side_walkA','walkA','walk','run','stand','front'),kb=pick('side_walkB','walkB')||ka;
-   const cl=q=>({...P[q],t:null,tf:null,hue});const pa=cl(ka),pb=cl(kb);
+   const cl=q=>({...P[q],T:null,mouth:null,hue});const pa=cl(ka),pb=cl(kb);
    add(box(1,1,.02),I(),[1,1,1],{tex:ptex(pa,false),unlit:true,cut:true,shadow:false});
    window.EXT.push({sc:si,obj:objs[objs.length-1],pa,pb,cx:-7+k*(14/Math.max(1,N-1))+(rnd()-.5)*1.2,amp:.8+rnd()*1.8,sp:.25+rnd()*.35,ph:rnd()*6.3,z:1.0+(k%3)*.5,s:.8+.14*(k%2)+rnd()*.06});continue}
   const img=window.IMGS[n];
@@ -293,7 +297,7 @@ window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;windo
    if(sc.ride&&rideMotor){if(n!==rideMotor){s.obj.base=S(0,0,0);return}
     const mp=PZ[st.dx>0?'motor_R':'motor_L'];s.obj.tex=ptex(mp,false);s.obj.crop=1;const rb=Math.sin(t*17)*.012+Math.sin(t*3.2)*.01;
     s.obj.base=poseM(mp,false,st.x-(seatOf(sc,rideMotor)),st.y+rb,st.z,0,pop,pop);return}
-   const pr=poseFor(n,i,t,b,sc,st,isT);s.obj.tex=ptex(pr.p,pr.flip);s.obj.crop=1;
+   const pr=poseFor(n,i,t,b,sc,st,isT);s.obj.tex=ptex(pr.p,pr.flip,isT&&!st.walk?mouthAt(b,t):'');s.obj.crop=1;
    s.obj.base=poseM(pr.p,pr.flip,st.x,st.y+bob+hop,st.z,sw,pop,pop*tk);return}
   const f=faceOf(n,i,t,b);if(f)s.obj.tex=f;
   const hh=s.h*pop*tk;s.obj.crop=st.crop;
