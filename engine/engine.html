@@ -134,8 +134,7 @@ function bikeParts(col){const P=[];const part=(mesh,loc,c,o)=>{add(mesh,I(),c,o|
  part(box(.07,.5,.07),T(0,.0,.55),[.7,.7,.72]);part(box(.7,.06,.06),T(0,.46,.5),[.15,.15,.17]);part(sphere(.09,8,6),T(0,.32,.62),[1,.95,.7],{unlit:true,shadow:false});
  part(box(.2,.2,.3),T(0,.05,-.62),[.15,.15,.17]);return P}
 function placeBike(P,x,y,z,ry){P.forEach(q=>{q.obj.base=M(T(x,y+.3,z),RY(ry),q.loc)})}window.placeBike=placeBike;
-{const pk=bikeParts([.8,.15,.15]);placeBike(pk,-3.9,0,.9,1.2);const pk2=bikeParts([.15,.35,.75]);placeBike(pk2,3.6,0,.5,-1.0);
- const mv=bikeParts([.95,.7,.1]);window.BIKES.push({P:mv,z:6.6,v:5.5,off:0,dir:1});const mv2=bikeParts([.2,.6,.3]);window.BIKES.push({P:mv2,z:7.8,v:4.2,off:14,dir:-1})}
+// motor 3D NPC dihapus: hanya sprite pose motor yang dipakai
 // gunung dan palem
 [[-40,-120,40,[.32,.52,.5]],[10,-125,48,[.3,.5,.46]],[55,-118,36,[.34,.55,.5]],[-85,-125,42,[.36,.55,.52]]].forEach(m=>add(cone(34,m[2],7),T(m[0],-2,m[1]),m[3],{shadow:false}));
 function palm(x,z,h){add(cyl(.22,h,7),M(T(x,0,z),RZ(.06)),[.45,.33,.2]);for(let k=0;k<7;k++){const a=k/7*Math.PI*2;add(box(.28,.05,2.6),M(T(x+h*.06,h,z),RY(a),RX(.45),T(0,0,1.2)),[.18+k%2*.05,.5,.22],{shadow:false})}}
