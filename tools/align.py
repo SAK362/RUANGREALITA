@@ -46,7 +46,7 @@ def align(script_words, heard, dur):
 def split_speaker(beats, speaker, heard, total):
     """Bagi rekaman satu karakter menjadi beat-beatnya.
     Return {indeks_beat: (mulai_potong, akhir_potong, [[mulai,akhir] relatif per kata])}"""
-    idx = [i for i, b in enumerate(beats) if b['speaker'] == speaker]
+    idx = [i for i, b in enumerate(beats) if b.get('voice', b['speaker']) == speaker]
     words, counts = [], []
     for i in idx:
         w = beats[i]['text'].split(); words += w; counts.append(len(w))
@@ -98,9 +98,9 @@ def main():
         for f in sorted(os.listdir(sp_dir)):
             if not f.endswith('.wav'): continue
             name = f[:-4]
-            if not any(b['speaker'] == name for b in beats): continue
-            exp = sum(len(b['text'].split()) for b in beats if b['speaker'] == name)
-            heard, total = transcribe(model, os.path.join(sp_dir, f), ' '.join(b['text'] for b in beats if b['speaker'] == name), exp)
+            if not any(b.get('voice', b['speaker']) == name for b in beats): continue
+            exp = sum(len(b['text'].split()) for b in beats if b.get('voice', b['speaker']) == name)
+            heard, total = transcribe(model, os.path.join(sp_dir, f), ' '.join(b['text'] for b in beats if b.get('voice', b['speaker']) == name), exp)
             json.dump([[w, round(a, 2), round(b, 2)] for w, a, b in heard], open(os.path.join(d, f'heard_{name}.json'), 'w'), ensure_ascii=False)
             cuts = split_speaker(beats, name, heard, total)
             for i, (s, e, w) in cuts.items():

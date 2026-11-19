@@ -224,7 +224,8 @@ function ptex(p,flip,mo){mo=p.mouth?(mo||''):'';const k=(flip?'f':'n')+mo;p.T=p.
    const rx=Math.max(mw*(mo==='b'?.46:.36),5),ry=rx*(mo==='b'?.95:.62);g.fillStyle='#4a1414';g.strokeStyle='#1a1a1a';g.lineWidth=Math.max(2,img.height/300);g.beginPath();g.ellipse(cx,cy+ry*.2,rx,ry,0,0,7);g.fill();g.stroke();
    g.fillStyle='#c4585a';g.beginPath();g.ellipse(cx,cy+ry*.2+ry*.45,rx*.6,ry*.45,0,0,Math.PI);g.fill()}});
  gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return p.T[k]=t}
-function mouthAt(b,t){if(t<b.st||t>b.en+.05)return'';let k=-1;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;if(k<0)return'';
+const nTag=b=>b.tag?b.tag.trim().split(/\s+/).length:0;
+function mouthAt(b,t){if(t<b.st||t>b.en+.05)return'';let k=-1;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;if(k<0||k>=b.ws.length-nTag(b))return'';
  const ws=b.ws[k][1],we=b.ws[k][2]||(k+1<b.ws.length?b.ws[k+1][1]:b.en);const d=Math.max(.06,we-ws),u=(t-ws)/d;if(u>=1)return'';
  const w=String(b.ws[k][0]).toLowerCase().replace(/[^a-z]/g,'');const vs=w.match(/[aiueo]+/g)||['a'];const n=vs.length;
  const sy=Math.min(n-1,Math.floor(u*n)),f=u*n-sy;if(f>.72)return'';
@@ -296,7 +297,7 @@ function poseFor(n,i,t,b,sc,st,isT){const P=window.POSES[n];let key='front',flip
  if(!P[key])key=Object.keys(P).find(k=>!k.startsWith('motor_'))||'front';
  return{p:P[key],flip,acc}}
 window.initNpcs=()=>{SCN.forEach((sc,si)=>(sc.npc||[]).forEach(o=>{const P=window.POSES[o.n];if(!P)return;const p=P[o.pose]||P[Object.keys(P)[0]];add(box(1,1,.02),I(),[1,1,1],{tex:ptex(p,false),unlit:true,cut:true,shadow:false});window.NPCS.push({sc:si,o,obj:objs[objs.length-1]})}))};
-window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;window.ANIM.forEach(f=>f(t));window.BIKES.forEach(k=>{const span=30;const x=k.dir>0?-15+((t*k.v+k.off)%span):15-((t*k.v+k.off)%span);placeBike(k.P,x,0,k.z,k.dir>0?Math.PI/2:-Math.PI/2)});const talking=t>=b.st&&t<=b.en?b.speaker:null;const rideMotor=sc.ride?CAST.find(n=>sc.who.includes(n)&&window.POSES[n]&&window.POSES[n].motor_R):null;
+window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;window.ANIM.forEach(f=>f(t));window.BIKES.forEach(k=>{const span=30;const x=k.dir>0?-15+((t*k.v+k.off)%span):15-((t*k.v+k.off)%span);placeBike(k.P,x,0,k.z,k.dir>0?Math.PI/2:-Math.PI/2)});const nt=nTag(b),qe=b.tag&&b.ws.length>nt?(b.ws[b.ws.length-nt-1][2]||b.ws[b.ws.length-nt][1])+.05:b.en;const talking=t>=b.st&&t<=Math.min(b.en,qe)?b.speaker:null;const rideMotor=sc.ride?CAST.find(n=>sc.who.includes(n)&&window.POSES[n]&&window.POSES[n].motor_R):null;
  CAST.forEach((n,i)=>{const s=window.SPR[n];if(!s)return;const st=stOf(n,sc,t);if(!st){s.obj.base=S(0,0,0);return}
   const ph=i*1.3;const isT=talking===n;const tk=isT?1+.03*Math.abs(Math.sin(t*13)):1;
   let hop=0,lean=0;if(isT){let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;const d=t-b.ws[k][1];hop=Math.max(0,1-d/.2)*.045*(b.style==='semangat'||b.style==='kaget'?1.8:1);const dirx=-Math.sign(st.x)||0;lean=dirx*.035+Math.sin(t*4)*.012}
