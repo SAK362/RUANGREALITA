@@ -89,6 +89,7 @@ def main():
             name = f[:-4]
             if not any(b['speaker'] == name for b in beats): continue
             heard, total = transcribe(model, os.path.join(sp_dir, f), ' '.join(b['text'] for b in beats if b['speaker'] == name))
+            json.dump([[w, round(a, 2), round(b, 2)] for w, a, b in heard], open(os.path.join(d, f'heard_{name}.json'), 'w'), ensure_ascii=False)
             cuts = split_speaker(beats, name, heard, total)
             for i, (s, e, w) in cuts.items():
                 cut_audio(os.path.join(sp_dir, f), s, e, os.path.join(d, 'audio', f'beat_{i:02d}.wav'))

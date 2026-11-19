@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name "ruangrealita-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add "jobs/${{ inputs.job_id }}/words.json" "jobs/${{ inputs.job_id }}/bundle_${{ inputs.job_id }}.zip"
+          git add -f "jobs/${{ inputs.job_id }}"/heard_*.json "jobs/${{ inputs.job_id }}/words.json" "jobs/${{ inputs.job_id }}/bundle_${{ inputs.job_id }}.zip"
           git commit -m "words ${{ inputs.job_id }}" || echo "tidak ada perubahan"
           git pull --rebase origin "${GITHUB_REF_NAME}" || true
           git push
