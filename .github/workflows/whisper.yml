@@ -1,0 +1,70 @@
+name: whisper-ruangrealita
+# Hanya Whisper: WAV per beat -> jobs/<id>/words.json. Tidak ada render.
+on:
+  workflow_dispatch:
+    inputs:
+      job_id:
+        description: "ID job (jobs/<job_id>/ berisi job.json dan audio/beat_NN.wav)"
+        required: true
+      model:
+        description: "Model Whisper (small = akurat dan cepat di CPU)"
+        required: false
+        default: "small"
+      callback_url:
+        description: "Webhook n8n setelah selesai (opsional)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Cache model Whisper
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: whisper-${{ inputs.model }}
+      - name: Install faster-whisper
+        run: pip install faster-whisper
+      - name: Jalankan Whisper
+        run: python tools/align.py "jobs/${{ inputs.job_id }}" --model "${{ inputs.model }}"
+      - name: Kompres audio dan buat bundel kecil
+        run: |
+          sudo apt-get install -y ffmpeg >/dev/null 2>&1 || true
+          D="jobs/${{ inputs.job_id }}"
+          mkdir -p "$D/bundle/audio"
+          for f in "$D"/audio/beat_*.wav; do
+            b=$(basename "$f" .wav)
+            ffmpeg -y -loglevel error -i "$f" -ac 1 -c:a libopus -b:a 32k "$D/bundle/audio/$b.opus"
+          done
+          cp "$D/job.json" "$D/words.json" "$D/bundle/"
+          (cd "$D/bundle" && zip -qr "../bundle_${{ inputs.job_id }}.zip" .)
+          rm -rf "$D/bundle"
+          ls -la "$D"/bundle_*.zip
+      - name: Commit words.json
+        run: |
+          git config user.name "ruangrealita-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add "jobs/${{ inputs.job_id }}/words.json" "jobs/${{ inputs.job_id }}/bundle_${{ inputs.job_id }}.zip"
+          git commit -m "words ${{ inputs.job_id }}" || echo "tidak ada perubahan"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push
+  notify:
+    needs: align
+    if: always() && inputs.callback_url != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Panggil n8n
+        env:
+          RESULT: ${{ needs.align.result }}
+          CALLBACK_KEY: ${{ secrets.CALLBACK_KEY }}
+        run: |
+          STATUS=failed; [ "$RESULT" = "success" ] && STATUS=success
+          curl -sS -X POST "${{ inputs.callback_url }}" \
+            -H "Content-Type: application/json" -H "x-callback-key: ${CALLBACK_KEY}" \
+            -d "{\"job_id\":\"${{ inputs.job_id }}\",\"status\":\"${STATUS}\",\"run_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}"

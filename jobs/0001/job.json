@@ -1,0 +1,15 @@
+{
+  "id": "0001",
+  "title": "Kopi naik, gaji tetap",
+  "location": "warkop",
+  "cast": ["Joko", "Budi", "Siti"],
+  "beats": [
+    {"speaker": "Narator", "text": "Pagi di warkop."},
+    {"speaker": "Joko", "text": "Kopi naik jadi dua puluh ribu."},
+    {"speaker": "Budi", "text": "Gaji tetap sama."},
+    {"speaker": "Siti", "text": "Katanya ekonomi tumbuh."},
+    {"speaker": "Joko", "text": "Tumbuhnya di mana ya?"}
+  ],
+  "description": "Kopi makin mahal, gaji ya segitu-gitu aja. Tumbuhnya di mana ya?",
+  "hashtags": ["#RuangRealita", "#sindiran", "#kehidupanindonesia", "#warkop", "#hargaNaik"]
+}
