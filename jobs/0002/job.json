@@ -1,0 +1,269 @@
+{
+ "id": "0002",
+ "title": "Cabai Naik, Arisan Jalan Terus",
+ "cast": [
+  "Udin",
+  "Rina",
+  "Nina",
+  "Siti",
+  "Budi",
+  "Joko"
+ ],
+ "extras": [
+  "Agus",
+  "Dewi",
+  "Maya",
+  "Rizky"
+ ],
+ "scenes": [
+  {
+   "loc": "jalan",
+   "bab": "Bab 1 · Di jalan",
+   "judul": "Menuju *pasar*",
+   "who": [
+    "Udin",
+    "Rina"
+   ],
+   "ride": {
+    "v": 4.2,
+    "dir": 1
+   },
+   "seat": {
+    "Rina": [
+     0.95,
+     -0.3,
+     0.62,
+     0.12
+    ]
+   }
+  },
+  {
+   "loc": "pasar",
+   "bab": "Bab 2 · Di pasar",
+   "judul": "Tawar-menawar *cabai*",
+   "crowd": 9,
+   "who": [
+    "Nina",
+    "Rina",
+    "Siti",
+    "Udin"
+   ],
+   "pos": {
+    "Nina": [
+     -2.6,
+     2.7
+    ],
+    "Rina": [
+     8,
+     2.95
+    ],
+    "Siti": [
+     9.5,
+     2.7
+    ],
+    "Udin": [
+     8.5,
+     3.2
+    ]
+   }
+  },
+  {
+   "loc": "warkop",
+   "bab": "Bab 3 · Di warkop",
+   "judul": "Ngopi dan *ngeluh*",
+   "crowd": 3,
+   "who": [
+    "Siti",
+    "Budi",
+    "Joko"
+   ]
+  },
+  {
+   "loc": "jalan",
+   "bab": "Bab 4 · Pulang",
+   "judul": "Ambil *kesimpulan*",
+   "who": [
+    "Budi",
+    "Joko"
+   ],
+   "pos": {
+    "Budi": [
+     -1.6,
+     2.7
+    ],
+    "Joko": [
+     0.4,
+     2.9
+    ]
+   }
+  }
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Sabtu pagi. Bu Rina minta diantar Udin ke pasar. Katanya cuma beli cabai. Tapi harga cabai sekarang, tidak main-main.",
+   "emosi": "tenang bercerita santai, ada senyum di akhir kalimat",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rina",
+   "text": "Din, pelan-pelan saja. Cabai tidak akan lari.",
+   "emosi": "santai, ibu-ibu yakin dan sedikit manja",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Udin",
+   "text": "Cabainya memang tidak lari, Bu. Tapi harganya lari duluan.",
+   "emosi": "tertawa kecil lalu sinis lucu",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Seratus ribu sekilo?! Kemarin masih enam puluh!",
+   "emosi": "kaget lalu tidak terima, nada tinggi, setengah berteriak",
+   "style": "kaget"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Nin! Kamu juga di sini? Tawar saja, siapa tahu turun.",
+   "emosi": "ramah dan bersemangat menyapa, lalu enteng",
+   "style": "semangat",
+   "go": {
+    "Rina": [
+     -0.4,
+     2.95
+    ],
+    "Udin": [
+     3.2,
+     3.2
+    ]
+   }
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Sudah, Rin. Saya tawar, pedagangnya malah tersinggung. Katanya cabainya juga lagi stres.",
+   "emosi": "mengeluh, kesal tapi geli sendiri",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Siti",
+   "text": "Ibu-ibu, sambal di warkop saya sekarang saya irit. Pelanggan bilang rasanya sama saja.",
+   "emosi": "polos, datar, sedikit bangga padahal pasrah",
+   "style": "pasrah",
+   "go": {
+    "Siti": [
+     1.5,
+     2.7
+    ]
+   }
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Siti kok tenang sekali?",
+   "emosi": "heran penasaran",
+   "style": "kaget"
+  },
+  {
+   "scene": 1,
+   "speaker": "Siti",
+   "text": "Pasrah, Bu. Harga naik, gaji tetap, sambal ikut diet.",
+   "emosi": "pasrah dengan humor kering",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Besok arisan, siapa tuan rumahnya?",
+   "emosi": "santai bertanya, lalu penasaran",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Saya. Menunya tahu isi tanpa cabai.",
+   "emosi": "percaya diri, tenang seolah itu hal biasa",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Hah?! Tahu isi tanpa cabai?!",
+   "emosi": "kaget besar, nada naik, tidak percaya",
+   "style": "kaget"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Sudah, Bu. Naik saja. Cabainya saya bawa pulang, satu biji.",
+   "emosi": "pasrah lucu, menahan tawa",
+   "style": "pasrah",
+   "go": {
+    "Rina": [
+     1.0,
+     2.95
+    ]
+   }
+  },
+  {
+   "scene": 2,
+   "speaker": "Siti",
+   "text": "Pak Budi, Mas Joko, kopinya naik lima ratus ya. Cabai naik, kopi ikut naik.",
+   "emosi": "ramah tapi tegas, setengah minta maaf",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Lho, honor guru honorer saya naiknya kapan, Bu? Nunggu lebaran?",
+   "emosi": "mengeluh pelan, getir tapi lucu",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Honor saya lebih parah. Klien bilang bayarannya nanti, yang penting exposure.",
+   "emosi": "sinis, tertawa getir",
+   "style": "sinis"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Tapi exposure bisa jadi bahan obrolan. Gratis, dan tidak naik harga.",
+   "emosi": "bijak sambil bercanda",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Betul. Satu-satunya yang stabil di negara ini ya ngopi dan ngeluh.",
+   "emosi": "pasrah tertawa, semangat di akhir",
+   "style": "semangat"
+  },
+  {
+   "scene": 3,
+   "speaker": "Narator",
+   "text": "Harga naik itu tidak bisa ditawar. Tapi tawa tetap gratis. Kalau kamu pernah nawar cabai sampai pedagangnya baper, tulis cabai di komentar. Dan kalau terhibur, follow RuangRealita ya.",
+   "emosi": "tenang, hangat, lalu ajakan ramah dan ceria di akhir",
+   "style": "santai",
+   "go": {
+    "Budi": [
+     4.5,
+     2.7
+    ],
+    "Joko": [
+     6.0,
+     2.9
+    ]
+   },
+   "speed": 1.0
+  }
+ ]
+}

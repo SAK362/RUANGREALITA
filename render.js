@@ -13,14 +13,14 @@ job.beats.forEach((b,i)=>{const nm=`beat_${String(i).padStart(2,'0')}`;const f=[
 // words.json (hasil Whisper): {"beats":[[[mulai,akhir],...per kata],...]} relatif ke awal audio beat
 const wj=path.join(dir,'words.json');if(fs.existsSync(wj)){const W=JSON.parse(fs.readFileSync(wj,'utf8')).beats||[];job.beats.forEach((b,i)=>{if(W[i])b.wt=W[i]});console.log('words.json dipakai:',W.length,'beat')}
 job.beats[job.beats.length-1].punch=true;
-for(const n of job.cast)if(!sprites[n])throw new Error('Sprite tidak ada untuk karakter: '+n);
+const NEED=[...new Set([...job.cast,...(job.extras||[])])];for(const n of NEED)if(!sprites[n])throw new Error('Sprite tidak ada untuk karakter: '+n);
 async function open(){const b=await pw.chromium.launch({executablePath:CHROME,args:['--no-sandbox','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist','--enable-webgl']});
  const p=await b.newPage({viewport:{width:W,height:H}});p.on('pageerror',e=>console.log('pageerror:',e.message.slice(0,400)));
  await p.addInitScript(`window.RW=${W};window.RH=${H};window.JOB=${JSON.stringify(job)};window.SMETA=${JSON.stringify(sprites)}`);
  await p.goto('file://'+path.join(__dirname,'engine/engine.html'));await p.waitForFunction('window.READY',null,{timeout:90000});await p.evaluate(()=>document.fonts.load('700 40px Poppins'));
- for(const n of job.cast){const uri='data:image/png;base64,'+fs.readFileSync(path.join(__dirname,'sprites',n+'.png')).toString('base64');await p.evaluate(([n,u])=>window.addSprite(n,u),[n,uri])
- const fd=path.join(__dirname,'sprites/faces');if(fs.existsSync(fd))for(const f of fs.readdirSync(fd))if(f.startsWith(n+'__')){const v=f.slice(n.length+2,-4);const u2='data:image/png;base64,'+fs.readFileSync(path.join(fd,f)).toString('base64');await p.evaluate(([n,u,v])=>window.addSprite(n,u,v),[n,u2,v])}}
- return{b,p}}
+ for(const n of NEED){const uri='data:image/png;base64,'+fs.readFileSync(path.join(__dirname,'sprites',n+'.png')).toString('base64');await p.evaluate(([n,u])=>window.addSprite(n,u),[n,uri])
+ const fd=path.join(__dirname,'sprites/faces');if(job.cast.includes(n)&&fs.existsSync(fd))for(const f of fs.readdirSync(fd))if(f.startsWith(n+'__')){const v=f.slice(n.length+2,-4);const u2='data:image/png;base64,'+fs.readFileSync(path.join(fd,f)).toString('base64');await p.evaluate(([n,u,v])=>window.addSprite(n,u,v),[n,u2,v])}}
+ await p.evaluate(()=>window.initExtras());return{b,p}}
 (async()=>{const first=await open();const total=await first.p.evaluate(()=>window.TOTAL);const N=Math.ceil(total*FPS);console.log(`durasi ${total.toFixed(1)}s, ${N} frame, ${WORKERS} worker`);
  const fr=path.join('out','frames_'+(job.id||'x'));if(!process.argv.includes('--reuse')){fs.rmSync(fr,{recursive:true,force:true})}fs.mkdirSync(fr,{recursive:true});
  const sess=[first];for(let k=1;k<WORKERS;k++)sess.push(await open());
