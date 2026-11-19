@@ -42,7 +42,7 @@
    "loc": "pasar",
    "bab": "",
    "judul": "Di *pasar*",
-   "crowd": 9,
+   "crowd": 5,
    "who": [
     "Nina",
     "Rina",
@@ -67,29 +67,12 @@
      3.2
     ]
    },
-   "npc": [
-    {
-     "n": "Pedagang_A",
-     "x": -3.9,
-     "z": 2.3,
-     "pose": "stall",
-     "face": 1
-    },
-    {
-     "n": "Pedagang_B",
-     "x": 3.3,
-     "z": 2.3,
-     "pose": "stall",
-     "face": -1
-    }
-   ],
    "ket": "Tawar-menawar harga cabai"
   },
   {
    "loc": "warkop",
    "bab": "",
    "judul": "Di *warkop*",
-   "crowd": 3,
    "who": [
     "Siti",
     "Budi",
@@ -145,10 +128,7 @@
    "speaker": "Nina",
    "text": "Seratus ribu sekilo?! Kemarin masih enam puluh!",
    "emosi": "kaget lalu tidak terima, nada tinggi, setengah berteriak",
-   "style": "kaget",
-   "npc": {
-    "Pedagang_A": "talk"
-   }
+   "style": "kaget"
   },
   {
    "scene": 1,
@@ -172,10 +152,7 @@
    "speaker": "Nina",
    "text": "Sudah, Rin. Saya tawar, pedagangnya malah tersinggung. Katanya cabainya juga lagi stres.",
    "emosi": "mengeluh, kesal tapi geli sendiri",
-   "style": "mengeluh",
-   "npc": {
-    "Pedagang_A": "angry"
-   }
+   "style": "mengeluh"
   },
   {
    "scene": 1,
@@ -188,9 +165,6 @@
      1.5,
      2.7
     ]
-   },
-   "npc": {
-    "Pedagang_A": "stall"
    }
   },
   {
@@ -226,10 +200,7 @@
    "speaker": "Nina",
    "text": "Hah?! Tahu isi tanpa cabai?!",
    "emosi": "kaget besar, nada naik, tidak percaya",
-   "style": "kaget",
-   "npc": {
-    "Pedagang_B": "open"
-   }
+   "style": "kaget"
   },
   {
    "scene": 1,
@@ -242,9 +213,6 @@
      1.0,
      2.95
     ]
-   },
-   "npc": {
-    "Pedagang_B": "stall"
    }
   },
   {
