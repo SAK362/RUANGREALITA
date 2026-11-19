@@ -4,12 +4,14 @@
   "location": "warkop",
   "cast": ["Joko", "Budi", "Siti"],
   "beats": [
-    {"speaker": "Narator", "text": "Pagi di warkop."},
-    {"speaker": "Joko", "text": "Kopi naik jadi dua puluh ribu."},
-    {"speaker": "Budi", "text": "Gaji tetap sama."},
-    {"speaker": "Siti", "text": "Katanya ekonomi tumbuh."},
-    {"speaker": "Joko", "text": "Tumbuhnya di mana ya?"}
-  ],
-  "description": "Kopi makin mahal, gaji ya segitu-gitu aja. Tumbuhnya di mana ya?",
-  "hashtags": ["#RuangRealita", "#sindiran", "#kehidupanindonesia", "#warkop", "#hargaNaik"]
+    {"speaker": "Narator", "text": "Pagi di warkop. Joko baru lihat daftar harga baru yang ditempel Siti, dan wajahnya langsung berubah.", "emosi": "tenang bercerita, lalu nada naik penasaran di akhir kalimat", "style": "santai"},
+    {"speaker": "Joko", "text": "Dua puluh ribu?! Ini kopi atau tiket konser, Sit?", "emosi": "kaget lalu tidak terima, nada tinggi, setengah tertawa", "style": "kaget"},
+    {"speaker": "Siti", "text": "Bukan aku yang naikin, Jok. Gulanya naik, kopinya naik, gasnya juga naik.", "emosi": "tegas tapi capek, cepat, seperti sudah sering menjelaskan hal ini", "style": "mengeluh"},
+    {"speaker": "Budi", "text": "Harga naik terus, gajiku masih sama kayak tahun lalu. Ya sudahlah...", "emosi": "menghela napas pelan, datar, lalu tertawa getir di ujung", "style": "pasrah"},
+    {"speaker": "Joko", "text": "Katanya ekonomi tumbuh. Tumbuhnya di mana? Di struk belanja doang?", "emosi": "nyinyir, nada naik menyindir, tempo sedang", "style": "sinis"},
+    {"speaker": "Narator", "text": "Kalau harga naik lebih cepat dari gaji, uang yang sama dapat barang lebih sedikit. Itu namanya inflasi.", "emosi": "menjelaskan dengan ramah dan jelas, seperti guru yang santai", "style": "santai"},
+    {"speaker": "Siti", "text": "Makanya catat pengeluaran. Kopi dua kali sehari itu lumayan lho kalau dihitung sebulan!", "emosi": "semangat menasihati sambil tertawa kecil", "style": "semangat"},
+    {"speaker": "Joko", "text": "Ya sudah, kopinya satu. Bayarnya pakai muka sedih boleh, Sit?", "emosi": "memelas dibuat-buat, pelan, mata berkaca-kaca bercanda", "style": "pasrah"},
+    {"speaker": "Siti", "text": "Muka sedihmu nggak laku di sini, Jok. Dua puluh ribu, tunai.", "emosi": "datar dan dingin, lalu senyum tipis puas", "style": "sinis"}
+  ]
 }
