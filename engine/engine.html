@@ -296,7 +296,8 @@ window.PRE=t=>{const b=beatAt(t);const si=b.scene||0,sc=SCN[si];ACT=sc.env;windo
   if(PZ){
    if(sc.ride&&rideMotor){if(n!==rideMotor){s.obj.base=S(0,0,0);return}
     const mp=PZ[st.dx>0?'motor_R':'motor_L'];s.obj.tex=ptex(mp,false);s.obj.crop=1;const rb=Math.sin(t*17)*.012+Math.sin(t*3.2)*.01;
-    s.obj.base=poseM(mp,false,st.x-(seatOf(sc,rideMotor)),st.y+rb,st.z,0,pop,pop);return}
+    const tp=(talking&&sc.who.includes(talking))?1:0,wd=tp?(()=>{let k=0;for(let q=0;q<b.ws.length;q++)if(t>=b.ws[q][1])k=q;return Math.max(0,1-(t-b.ws[k][1])/.18)})():0;
+    s.obj.base=poseM(mp,false,st.x-(seatOf(sc,rideMotor)),st.y+rb+wd*.03,st.z,tp*Math.sin(t*9)*.006,pop,pop*(1+wd*.012));return}
    const pr=poseFor(n,i,t,b,sc,st,isT);s.obj.tex=ptex(pr.p,pr.flip,isT&&!st.walk?mouthAt(b,t):'');s.obj.crop=1;
    s.obj.base=poseM(pr.p,pr.flip,st.x,st.y+bob+hop,st.z,sw,pop,pop*tk);return}
   const f=faceOf(n,i,t,b);if(f)s.obj.tex=f;

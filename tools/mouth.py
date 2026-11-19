@@ -56,3 +56,40 @@ if __name__ == '__main__':
                 meta[k]['mouth'] = mo; ok += 1
         json.dump(meta, open(pj, 'w'), indent=1)
         print(n, ok, '/', len([k for k in meta if not k.startswith(SKIP)]))
+
+
+def estimate_side(root='sprites/poses'):
+    """Pose samping (menghadap kanan): mulut diperkirakan dari pose 'front' (tinggi mulut dari atas) + tepi muka di baris itu."""
+    SIDE = ('side_stand', 'side_walkA', 'side_walkB', 'side_talk', 'side_point', 'side_jog', 'sit_side')
+    for n in sorted(os.listdir(root)):
+        pj = os.path.join(root, n, 'poses.json')
+        if not os.path.exists(pj):
+            continue
+        meta = json.load(open(pj))
+        fr = meta.get('front', {}).get('mouth')
+        if not fr:
+            continue
+        im = cv2.imread(os.path.join(root, n, 'front.png'), cv2.IMREAD_UNCHANGED)
+        row = int(fr[1]); a = im[..., 3] > 128
+        xs = np.where(a[row])[0]
+        headw = xs.max() - xs.min() + 1
+        cnt = 0
+        for k in SIDE:
+            if k not in meta:
+                continue
+            p = os.path.join(root, n, k + '.png')
+            s = cv2.imread(p, cv2.IMREAD_UNCHANGED)
+            a2 = s[..., 3] > 128
+            cy = fr[1]
+            # tepi muka: kolom paling kanan pada baris cy, di dalam rentang kepala (batasi lebar = headw*1.1 dari kiri tubuh-kepala)
+            band = a2[int(cy) - 3:int(cy) + 4].any(0)
+            xx = np.where(band)[0]
+            if len(xx) == 0:
+                continue
+            # kepala = klaster kolom yang berisi tepi kanan; ambil span kontigu dari kanan sepanjang <= headw*1.15
+            xr = xx.max(); xl = max(xx.min(), xr - int(headw * 1.15))
+            hw = xr - xl
+            meta[k]['mouth'] = [round(xr - 0.17 * hw, 1), round(cy, 1), max(8, int(fr[2] * 0.7)), max(4, fr[3])]
+            cnt += 1
+        json.dump(meta, open(pj, 'w'), indent=1)
+        print(n, 'side', cnt)
