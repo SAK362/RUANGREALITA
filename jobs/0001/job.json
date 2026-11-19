@@ -2,16 +2,107 @@
   "id": "0001",
   "title": "Kopi naik, gaji tetap",
   "location": "warkop",
-  "cast": ["Joko", "Budi", "Siti"],
+  "cast": [
+    "Joko",
+    "Budi",
+    "Siti"
+  ],
   "beats": [
-    {"speaker": "Narator", "text": "Pagi di warkop. Joko baru lihat daftar harga baru yang ditempel Siti, dan wajahnya langsung berubah.", "emosi": "tenang bercerita, lalu nada naik penasaran di akhir kalimat", "style": "santai"},
-    {"speaker": "Joko", "text": "Dua puluh ribu?! Ini kopi atau tiket konser, Sit?", "emosi": "kaget lalu tidak terima, nada tinggi, setengah tertawa", "style": "kaget"},
-    {"speaker": "Siti", "text": "Bukan aku yang naikin, Jok. Gulanya naik, kopinya naik, gasnya juga naik.", "emosi": "tegas tapi capek, cepat, seperti sudah sering menjelaskan hal ini", "style": "mengeluh"},
-    {"speaker": "Budi", "text": "Harga naik terus, gajiku masih sama kayak tahun lalu. Ya sudahlah...", "emosi": "menghela napas pelan, datar, lalu tertawa getir di ujung", "style": "pasrah"},
-    {"speaker": "Joko", "text": "Katanya ekonomi tumbuh. Tumbuhnya di mana? Di struk belanja doang?", "emosi": "nyinyir, nada naik menyindir, tempo sedang", "style": "sinis"},
-    {"speaker": "Narator", "text": "Kalau harga naik lebih cepat dari gaji, uang yang sama dapat barang lebih sedikit. Itu namanya inflasi.", "emosi": "menjelaskan dengan ramah dan jelas, seperti guru yang santai", "style": "santai"},
-    {"speaker": "Siti", "text": "Makanya catat pengeluaran. Kopi dua kali sehari itu lumayan lho kalau dihitung sebulan!", "emosi": "semangat menasihati sambil tertawa kecil", "style": "semangat"},
-    {"speaker": "Joko", "text": "Ya sudah, kopinya satu. Bayarnya pakai muka sedih boleh, Sit?", "emosi": "memelas dibuat-buat, pelan, mata berkaca-kaca bercanda", "style": "pasrah"},
-    {"speaker": "Siti", "text": "Muka sedihmu nggak laku di sini, Jok. Dua puluh ribu, tunai.", "emosi": "datar dan dingin, lalu senyum tipis puas", "style": "sinis"}
+    {
+      "speaker": "Narator",
+      "text": "Pagi di warkop. Joko baru lihat daftar harga baru yang ditempel Siti, dan wajahnya langsung berubah.",
+      "emosi": "tenang bercerita, lalu nada naik penasaran di akhir kalimat",
+      "style": "santai"
+    },
+    {
+      "speaker": "Joko",
+      "text": "Dua puluh ribu?! Ini kopi atau tiket konser, Sit?",
+      "emosi": "kaget lalu tidak terima, nada tinggi, setengah tertawa",
+      "style": "kaget"
+    },
+    {
+      "speaker": "Siti",
+      "text": "Bukan aku yang naikin, Jok. Gulanya naik, kopinya naik, gasnya juga naik.",
+      "emosi": "tegas tapi capek, cepat, seperti sudah sering menjelaskan hal ini",
+      "style": "mengeluh"
+    },
+    {
+      "speaker": "Budi",
+      "text": "Harga naik terus, gajiku masih sama kayak tahun lalu. Ya sudahlah...",
+      "emosi": "menghela napas pelan, datar, lalu tertawa getir di ujung",
+      "style": "pasrah"
+    },
+    {
+      "speaker": "Joko",
+      "text": "Katanya ekonomi tumbuh. Tumbuhnya di mana? Di struk belanja doang?",
+      "emosi": "nyinyir, nada naik menyindir, tempo sedang",
+      "style": "sinis"
+    },
+    {
+      "speaker": "Narator",
+      "text": "Kalau harga naik lebih cepat dari gaji, uang yang sama dapat barang lebih sedikit. Itu namanya inflasi.",
+      "emosi": "menjelaskan dengan ramah dan jelas, seperti guru yang santai",
+      "style": "santai"
+    },
+    {
+      "speaker": "Budi",
+      "text": "Dulu dua puluh ribu cukup buat kopi, dua gorengan, dan kembalian. Sekarang cuma dapat kopinya doang.",
+      "emosi": "bernostalgia pelan, lalu nada turun kecewa di kalimat terakhir",
+      "style": "mengeluh"
+    },
+    {
+      "speaker": "Siti",
+      "text": "Makanya catat pengeluaran. Kopi dua kali sehari itu lumayan lho kalau dihitung sebulan!",
+      "emosi": "semangat menasihati sambil tertawa kecil",
+      "style": "semangat"
+    },
+    {
+      "speaker": "Joko",
+      "text": "Hitung-hitungan terus. Yang naik harga, kok yang disuruh hemat kita?",
+      "emosi": "protes manja, agak merengek, tempo cepat",
+      "style": "mengeluh"
+    },
+    {
+      "speaker": "Siti",
+      "text": "Ya karena harga nggak bisa disuruh hemat, Jok. Yang bisa diatur cuma dompet.",
+      "emosi": "datar dan telak, seperti menjatuhkan fakta tanpa ampun",
+      "style": "sinis"
+    },
+    {
+      "speaker": "Joko",
+      "text": "Dompetku sudah diatur, Sit. Isinya yang nggak mau nurut!",
+      "emosi": "pasrah lucu, setengah tertawa getir",
+      "style": "pasrah"
+    },
+    {
+      "speaker": "Budi",
+      "text": "Aku bawa kopi sachet dari rumah aja. Nanti di sini tinggal minta air panas ke Siti.",
+      "emosi": "bangga dengan idenya, tenang, agak menggurui",
+      "style": "semangat"
+    },
+    {
+      "speaker": "Siti",
+      "text": "Air panas juga ada tarifnya, Pak Budi. Gasnya kan naik!",
+      "emosi": "kaget pura-pura, cepat, nada naik lalu tertawa jahil",
+      "style": "kaget"
+    },
+    {
+      "speaker": "Narator",
+      "text": "Hemat itu bagus. Tapi hemat ada batasnya, apalagi kalau yang terus naik cuma harganya.",
+      "emosi": "hangat dan reflektif, pelan, jeda sebelum kalimat terakhir",
+      "style": "santai"
+    },
+    {
+      "speaker": "Joko",
+      "text": "Ya sudah, kopinya satu. Bayarnya pakai muka sedih boleh, Sit?",
+      "emosi": "memelas dibuat-buat, pelan, mata berkaca-kaca bercanda",
+      "style": "pasrah"
+    },
+    {
+      "speaker": "Siti",
+      "text": "Muka sedihmu nggak laku di sini, Jok. Dua puluh ribu, tunai.",
+      "emosi": "datar dan dingin, lalu senyum tipis puas",
+      "style": "sinis"
+    }
   ]
 }
