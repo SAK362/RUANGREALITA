@@ -70,10 +70,21 @@ def cut_audio(src, start, end, dst):
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-ss', str(start), '-t', str(round(end - start, 3)),
                     '-i', src, '-ac', '1', '-c:a', 'pcm_s16le', dst], check=True)
 
-def transcribe(model, path, prompt):
-    segs, info = model.transcribe(path, language='id', word_timestamps=True, vad_filter=False,
-                                  initial_prompt=prompt, beam_size=5)
-    return [(w.word.strip(), w.start, w.end) for s in segs for w in (s.words or [])], info.duration
+def transcribe(model, path, prompt, expect=0):
+    """Transkripsi dengan beberapa percobaan; pilih hasil yang paling mendekati jumlah kata naskah."""
+    def run(**kw):
+        segs, info = model.transcribe(path, language='id', word_timestamps=True, **kw)
+        return [(w.word.strip(), w.start, w.end) for s in segs for w in (s.words or [])], info.duration
+    tries = [dict(vad_filter=False, initial_prompt=prompt, beam_size=5),
+             dict(vad_filter=True, vad_parameters=dict(min_silence_duration_ms=300), condition_on_previous_text=False, beam_size=5),
+             dict(vad_filter=False, condition_on_previous_text=False, beam_size=5, temperature=[0.0, 0.2, 0.4])]
+    best, dur = None, 0.0
+    for kw in tries:
+        heard, dur = run(**kw)
+        if best is None or abs(len(heard) - expect) < abs(len(best) - expect): best = heard
+        if expect and 0.8 * expect <= len(best) <= 1.5 * expect: break
+        print(f'  percobaan: terdengar {len(heard)} dari ~{expect} kata, coba lagi')
+    return best, dur
 
 def main():
     d = sys.argv[1]; model_name = sys.argv[sys.argv.index('--model') + 1] if '--model' in sys.argv else 'small'
@@ -88,7 +99,8 @@ def main():
             if not f.endswith('.wav'): continue
             name = f[:-4]
             if not any(b['speaker'] == name for b in beats): continue
-            heard, total = transcribe(model, os.path.join(sp_dir, f), ' '.join(b['text'] for b in beats if b['speaker'] == name))
+            exp = sum(len(b['text'].split()) for b in beats if b['speaker'] == name)
+            heard, total = transcribe(model, os.path.join(sp_dir, f), ' '.join(b['text'] for b in beats if b['speaker'] == name), exp)
             json.dump([[w, round(a, 2), round(b, 2)] for w, a, b in heard], open(os.path.join(d, f'heard_{name}.json'), 'w'), ensure_ascii=False)
             cuts = split_speaker(beats, name, heard, total)
             for i, (s, e, w) in cuts.items():
@@ -99,7 +111,7 @@ def main():
         if res[i] is not None: continue
         f = os.path.join(d, 'audio', f'beat_{i:02d}.wav')
         if not os.path.exists(f): continue
-        heard, dur = transcribe(model, f, b['text'])
+        heard, dur = transcribe(model, f, b['text'], len(b['text'].split()))
         res[i] = align(b['text'].split(), heard, dur)
         print(f'beat {i}: {len(b["text"].split())} kata, terdengar {len(heard)}')
     json.dump({'beats': res}, open(os.path.join(d, 'words.json'), 'w'))
