@@ -80,6 +80,7 @@ jobs:
         run: |
           ID="${{ inputs.job_id }}"
           ffmpeg -y -loglevel error -i "out/$ID.mp4" -vn -c:a libmp3lame -q:a 3 "out/voiceover_$ID.mp3"
+          ffmpeg -y -loglevel error -ss 3 -i "out/$ID.mp4" -frames:v 1 -q:v 3 "out/thumb_$ID.jpg"
           python3 - "$ID" <<'PY'
           import json,sys
           i=sys.argv[1]; j=json.load(open(f"jobs/{i}/job.json",encoding="utf-8"))
@@ -99,7 +100,7 @@ jobs:
         run: |
           ID="${{ inputs.job_id }}"
           gh release delete "job-$ID" -y --cleanup-tag || true
-          gh release create "job-$ID" "out/$ID.mp4" "out/voiceover_$ID.mp3" "out/narasi_$ID.txt" \
+          gh release create "job-$ID" "out/$ID.mp4" "out/voiceover_$ID.mp3" "out/narasi_$ID.txt" "out/thumb_$ID.jpg" \
             --title "job $ID" --notes "Output otomatis RUANGREALITA $ID"
   notify:
     needs: [align, render]
