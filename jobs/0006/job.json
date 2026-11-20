@@ -3,16 +3,16 @@
  "title": "Antre Gas, Antre Sabar",
  "location": "pangkalan, gang, warkop",
  "cast": [
-  "Joko",
   "Nina",
-  "Rina"
+  "Rina",
+  "Joko"
  ],
  "beats": [
   {
    "scene": 0,
    "speaker": "Narator",
    "text": "Pagi di pangkalan gas. Antreannya lebih panjang dari antrean tiket konser.",
-   "emosi": "santai, bicara spontan seperti orang asli",
+   "emosi": "tenang bercerita santai, ada senyum di akhir kalimat",
    "style": "santai"
   },
   {
@@ -27,7 +27,7 @@
    "speaker": "Nina",
    "text": "Saya duluan ya! Tiga tabung, untuk tetangga juga.",
    "emosi": "ngotot, bicara spontan seperti orang asli",
-   "style": "semangat"
+   "style": "santai"
   },
   {
    "scene": 0,
@@ -55,7 +55,7 @@
    "speaker": "Rina",
    "text": "Hati-hati, Bu. Aturannya satu orang, satu tabung.",
    "emosi": "tertawa, bicara spontan seperti orang asli",
-   "style": "santai"
+   "style": "semangat"
   },
   {
    "scene": 0,
@@ -70,6 +70,13 @@
    "text": "Berarti saya antre dari subuh cuma jadi penonton?",
    "emosi": "mengeluh, bicara spontan seperti orang asli",
    "style": "mengeluh"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rina",
+   "text": "Tenang, Joko. Nonton antrean juga bisa jadi konten.",
+   "emosi": "menyindir, bicara spontan seperti orang asli",
+   "style": "sinis"
   },
   {
    "scene": 1,
@@ -98,6 +105,13 @@
    "text": "Bu, saya bawa laptop, bukan tikar.",
    "emosi": "heran, bicara spontan seperti orang asli",
    "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Kerja sambil antre. Freelancer sejati.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "semangat"
   },
   {
    "scene": 1,
@@ -139,7 +153,14 @@
    "speaker": "Joko",
    "text": "Gas belum datang juga. Saya masak mi pakai kompor tungku saja.",
    "emosi": "lesu, bicara spontan seperti orang asli",
-   "style": "pasrah"
+   "style": "mengeluh"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rina",
+   "text": "Mi kuah rasa asap. Itu menu baru.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "semangat"
   },
   {
    "scene": 2,
@@ -160,7 +181,7 @@
    "speaker": "Nina",
    "text": "Sekalian menawar ke penjual gas. Siapa tahu bisa turun.",
    "emosi": "geli, bicara spontan seperti orang asli",
-   "style": "santai"
+   "style": "semangat"
   },
   {
    "scene": 2,
@@ -187,7 +208,7 @@
    "scene": 2,
    "speaker": "Narator",
    "text": "Yang langka bukan cuma gasnya. Rasa sabar juga makin sulit dicari.",
-   "emosi": "datar, bicara spontan seperti orang asli",
+   "emosi": "datar, getir, menutup cerita dengan senyum tipis",
    "style": "santai"
   }
  ],
@@ -197,11 +218,11 @@
    "bab": "",
    "judul": "Di *pangkalan*",
    "who": [
-    "Joko",
     "Nina",
-    "Rina"
+    "Rina",
+    "Joko"
    ],
-   "ket": "Antre gas dari subuh"
+   "ket": "pagi"
   },
   {
    "loc": "gang",
@@ -212,18 +233,18 @@
     "Rina",
     "Joko"
    ],
-   "ket": "Menunggu gas datang jam sepuluh"
+   "ket": "sambil menunggu"
   },
   {
    "loc": "warkop",
    "bab": "",
    "judul": "Di *warkop*",
    "who": [
-    "Joko",
     "Nina",
-    "Rina"
+    "Rina",
+    "Joko"
    ],
-   "ket": "Gas belum datang juga"
+   "ket": "siang"
   }
  ]
 }
