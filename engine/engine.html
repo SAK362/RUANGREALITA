@@ -99,16 +99,18 @@ const LOCS={
  kantor:{sign:'PT MAJU MUNDUR',wall:[.82,.84,.88],roof:[.35,.4,.5],roofD:[.25,.3,.4],awn:[.3,.5,.8],signC:'#334466',fgTop:[.78,.8,.83],fgBody:[.55,.57,.62],props:'laptop'},
  pasar:{walk:true,counter:false,sign:'PASAR REALITA',wall:[.88,.94,.76],roof:[.25,.55,.35],roofD:[.18,.4,.25],awn:[.95,.6,.15],signC:'#2a7a44',fgTop:[.86,.66,.36],fgBody:[.6,.42,.22],props:'veg'},
  jalan:{walk:true,counter:false,nobuild:true,sign:'JALAN REALITA',wall:[.9,.78,.6],roof:[.55,.3,.25],roofD:[.4,.22,.2],awn:[.4,.7,.4],signC:'#6a4a2a',fgTop:[.82,.82,.8],fgBody:[.64,.64,.62],props:'none'},
+ rumah:{sign:'RUMAH REALITA',wall:[.96,.9,.8],roof:[.55,.3,.25],roofD:[.4,.22,.2],awn:[.4,.7,.4],signC:'#7a4a2a',fgTop:[.55,.42,.62],fgBody:[.42,.3,.5],props:'sofa'},
+ pangkalan:{walk:true,counter:false,sign:'PANGKALAN GAS',wall:[.86,.9,.78],roof:[.3,.5,.6],roofD:[.2,.38,.48],awn:[.2,.6,.3],signC:'#1f7a3a',fgTop:[.8,.8,.78],fgBody:[.6,.6,.58],props:'none'},
  gang:{sign:'GANG REALITA',wall:[.9,.78,.6],roof:[.55,.3,.25],roofD:[.4,.22,.2],awn:[.4,.7,.4],signC:'#6a4a2a',fgTop:[.82,.82,.8],fgBody:[.64,.64,.62],props:'none'}};
 window.BIKES=[];window.ANIM=[];
-function buildEnv(LK,EXT){const L=LOCS[LK]||LOCS.warkop;
+function buildEnv(LK,EXT,AIR){const L=LOCS[LK]||LOCS.warkop;
 const signTex=mkTex(1024,160,(g,w,h)=>{g.fillStyle=L.signC;g.fillRect(0,0,w,h);g.strokeStyle='#fff';g.lineWidth=8;g.strokeRect(10,10,w-20,h-20);g.fillStyle='#fff';g.font='700 78px Poppins, sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(L.sign,w/2,h/2+4)});
-const INT=(LK==='warkop'||LK==='kantor'||LK==='warung')&&!EXT;const KT=LK==='kantor',WU=LK==='warung',WK=LK==='warkop';
+const INT=(LK==='warkop'||LK==='kantor'||LK==='warung'||LK==='rumah')&&!EXT;const KT=LK==='kantor',WU=LK==='warung',WK=LK==='warkop',RM=LK==='rumah';const WLK=L.walk||(EXT&&KT),CNT=L.counter!==false&&!(EXT&&KT)&&!AIR;
 if(!INT){
 // ground, road, sidewalk
 add(box(300,.2,300),T(0,-.1,-60),[.42,.68,.3],{pat:1});
 add(box(300,.06,8),T(0,.03,7.2),[.36,.37,.41],{pat:2});
-if(L.walk)add(box(300,.22,6.6),T(0,.11,-.1),[.78,.79,.8],{pat:2});else add(box(300,.22,3.4),T(0,.11,.2),[.78,.79,.8],{pat:2});
+if(WLK||AIR)add(box(300,.22,6.6),T(0,.11,-.1),[.78,.79,.8],{pat:2});else add(box(300,.22,3.4),T(0,.11,.2),[.78,.79,.8],{pat:2});
 for(let i=-14;i<=14;i++)add(box(1.6,.02,.18),T(i*3.2,.07,7.2),[1,.84,.25],{shadow:false});
 // building
 if(!L.nobuild){
@@ -154,6 +156,9 @@ for(let w=0;w<3;w++){const y=6.4+(w-1)*.0,z=.9+w*.1;const segs=8;for(let q=0;q<s
 if(LK==='jalan'){const cols=[[.9,.8,.62],[.82,.88,.7],[.95,.85,.7],[.9,.7,.6],[.7,.82,.9]],rf=[[.55,.25,.2],[.3,.45,.55],[.6,.3,.22],[.35,.4,.5]];
  for(let x=-70,k=0;x<=70;x+=7,k++){const w=4+rnd()*2,h=2.6+rnd()*1.6,zz=-5-(k%2)*1.5;add(box(w,h,4),T(x,h/2,zz),cols[k%5]);add(prism(w+.6,4.6,h*.45),T(x,h,zz),rf[k%4]);add(box(.7,1.6,.06),T(x-.8,.8,zz+2.05),[.55,.34,.18]);if(k%3==0)tree(x+3.4,-1.2,1.1+rnd()*.5)}
  for(let x=-66;x<=70;x+=22){add(cyl(.12,6,8),T(x,0,1.0),[.35,.3,.28]);add(box(2.2,.12,.12),T(x,5.6,1.0),[.3,.26,.24])}}
+if(LK==='pangkalan'){for(let g=0;g<5;g++)for(let r=0;r<2;r++)for(let k=0;k<4;k++){const x=-4.2+g*2.1+k*.36,z=-.9+r*.0;add(cyl(.16,.5,10),T(x,.22,z-r*.4),[.25,.62,.3]);add(sphere(.12,8,6),T(x,.74,z-r*.4),[.2,.5,.25]);add(cyl(.05,.08,6),T(x,.8,z-r*.4),[.7,.7,.72])}
+ add(box(1.1,.5,.7),T(3.8,.47,.4),[.55,.38,.22]);add(cyl(.2,.1,10),T(3.8,.77,.4),[.8,.8,.82])}
+if(AIR){add(box(300,.5,12),T(0,.2,2.6),[.52,.44,.3],{shadow:false});add(box(300,.02,12),T(0,.46,2.6),[.62,.55,.4],{shadow:false})}
 function chair(x,z,ry,c){const m=(mesh,loc,col)=>add(mesh,M(T(x,0,z),RY(ry),loc),col);m(box(.42,.05,.42),T(0,.42,0),c);m(box(.42,.45,.05),T(0,.65,-.2),c);[[-.17,-.17],[.17,-.17],[-.17,.17],[.17,.17]].forEach(q=>m(cyl(.025,.42,6),T(q[0],0,q[1]),[.7,.7,.72]))}
 if(LK==='warkop'||LK==='warung'||LK==='gang'){chair(-3.2,1.0,.4,[.85,.15,.15]);chair(-2.7,.4,-.3,[.15,.35,.8]);chair(3.0,1.1,-.5,[.85,.15,.15]);add(box(.6,.4,.6),T(-3.0,.2,.7),[.7,.5,.3])}
 if(LK==='warkop'){for(let k=0;k<16;k++){const x=-4.2+k*.5,c=[[.9,.2,.2],[.95,.75,.1],[.2,.5,.85],[.2,.7,.35]][k%4];add(box(.2,.3,.03),T(x,2.1-(k%2)*.05,-1.4),c,{shadow:false});add(box(.02,.3,.02),T(x,2.3,-1.4),[.3,.3,.3],{shadow:false})}
@@ -165,7 +170,7 @@ if(LK==='gang'){add(box(2.4,4.6,9),T(-7.2,2.3,-2),[.88,.72,.55]);add(box(2.4,4.6
 }
 if(INT){
 const part=(mesh,mat,col,o)=>{add(mesh,mat,col,o);return objs[objs.length-1]};
-const CR=KT?[.93,.94,.97]:WU?[.98,.9,.7]:[.96,.9,.75],GR=KT?[.42,.52,.68]:WU?[.8,.35,.25]:[.33,.55,.4],FL=KT?[.66,.68,.72]:WU?[.8,.74,.62]:[.82,.7,.56];
+const CR=KT?[.93,.94,.97]:RM?[.97,.92,.82]:WU?[.98,.9,.7]:[.96,.9,.75],GR=KT?[.42,.52,.68]:RM?[.62,.74,.7]:WU?[.8,.35,.25]:[.33,.55,.4],FL=KT?[.66,.68,.72]:RM?[.72,.55,.38]:WU?[.8,.74,.62]:[.82,.7,.56];
 add(box(16,.2,40),T(0,-.1,10),FL,{pat:2});
 add(box(16,4.6,.2),T(0,2.3,-2),CR);add(box(16,1.3,.24),T(0,.65,-2),GR);add(box(16,.08,.28),T(0,1.32,-2),[.9,.9,.85]);
 add(box(.2,4.6,40),T(-7.5,2.3,10),CR,{shadow:false});add(box(.2,4.6,40),T(7.5,2.3,10),CR,{shadow:false});
@@ -181,9 +186,9 @@ add(box(4.6,.8,.1),T(0,3.85,-1.85),[1,1,1],{tex:signTex});
 add(sphere(.4,14,10),M(T(-3.5,3.95,-1.8),S(1,1,.12)),[.97,.97,.95]);
 const mh=part(box(.03,.3,.02),I(),[.1,.1,.1],{shadow:false}),hh=part(box(.035,.2,.02),I(),[.1,.1,.1],{shadow:false});
 ANIM.push(t=>{mh.base=M(T(-3.5,3.95,-1.7),RZ(-t*.4),T(0,.14,0));hh.base=M(T(-3.5,3.95,-1.7),RZ(-t*.033),T(0,.09,0))});
-if(WK){add(box(1.6,.95,.14),T(3.2,3.75,-1.8),[.08,.08,.1]);const tv=part(box(1.4,.78,.03),T(3.2,3.75,-1.7),[.3,.5,.8],{unlit:true,shadow:false});
+if(WK||RM){add(box(1.6,.95,.14),T(3.2,3.75,-1.8),[.08,.08,.1]);const tv=part(box(1.4,.78,.03),T(3.2,3.75,-1.7),[.3,.5,.8],{unlit:true,shadow:false});
 ANIM.push(t=>{const k=(Math.sin(t*2.3)+1)/2,j=(Math.sin(t*7.1)+1)/2;tv.color=[.25+.35*k,.4+.3*j,.7+.25*(1-k)]})}else if(KT){add(box(1.9,.1,.1),T(3.2,3.9,-1.8),[.3,.3,.35]);add(box(1.7,.7,.05),T(3.2,3.55,-1.8),[.92,.93,.96])}
-const menuTex=mkTex(512,512,(g,w,h)=>{g.fillStyle=KT?'#f4f6fa':'#24382c';g.fillRect(0,0,w,h);g.strokeStyle=KT?'#8a97b0':'#c99a5b';g.lineWidth=14;g.strokeRect(10,10,w-20,h-20);g.fillStyle=KT?'#243049':'#f4efe0';g.textAlign='center';g.font='700 56px Poppins, sans-serif';g.fillText(KT?'TARGET':WU?'HARGA':'MENU',w/2,95);g.font='700 40px Poppins, sans-serif';(KT?['LAPORAN','RAPAT SENIN','DEADLINE','REVISI','LEMBUR?']:WU?['BERAS','MINYAK','GULA','TELUR','GAS']:['KOPI HITAM','KOPI SUSU','TEH MANIS','MIE REBUS','GORENGAN']).forEach((x,i)=>g.fillText(x,w/2,170+i*62))});
+const menuTex=mkTex(512,512,(g,w,h)=>{g.fillStyle=KT?'#f4f6fa':'#24382c';g.fillRect(0,0,w,h);g.strokeStyle=KT?'#8a97b0':'#c99a5b';g.lineWidth=14;g.strokeRect(10,10,w-20,h-20);g.fillStyle=KT?'#243049':'#f4efe0';g.textAlign='center';g.font='700 56px Poppins, sans-serif';g.fillText(KT?'TARGET':WU?'HARGA':RM?'CATATAN':'MENU',w/2,95);g.font='700 40px Poppins, sans-serif';(KT?['LAPORAN','RAPAT SENIN','DEADLINE','REVISI','LEMBUR?']:WU?['BERAS','MINYAK','GULA','TELUR','GAS']:RM?['LISTRIK','AIR','WIFI','CICILAN','JAJAN']:['KOPI HITAM','KOPI SUSU','TEH MANIS','MIE REBUS','GORENGAN']).forEach((x,i)=>g.fillText(x,w/2,170+i*62))});
 add(box(1.6,1.6,.06),T(3.4,2.2,-1.84),[1,1,1],{tex:menuTex});
 // lampu gantung
 [-3.4,3.4].forEach(x=>{if(KT){add(box(1.8,.06,.35),T(x,4.3,0),[1,1,1],{unlit:true,shadow:false});return}add(box(.02,.5,.02),T(x,4.25,0),[.2,.2,.2],{shadow:false});add(cone(.3,.22,10),T(x,4.0,0),[.85,.85,.82],{shadow:false});add(sphere(.12,8,6),T(x,3.97,0),[1,.93,.6],{unlit:true,shadow:false})});
@@ -195,18 +200,23 @@ if(WK){add(box(.1,1.2,.5),T(-6.6,.6,-1.2),[.5,.34,.2]);add(box(1.6,.08,.5),T(-6.
 for(let k=0;k<5;k++)add(cyl(.12,.3,10),T(-6.6+k*.3,1.54,-1.65),[[.85,.2,.2],[.9,.75,.2],[.3,.5,.8],[.3,.7,.4],[.9,.5,.2]][k])}
 if(KT){add(box(1.0,1.9,.6),T(-6.5,.95,-1.5),[.55,.6,.66]);for(let k=0;k<4;k++)add(box(.9,.02,.04),T(-6.5,.4+k*.45,-1.19),[.3,.33,.4],{shadow:false});add(cyl(.22,.4,10),T(-5.4,0,-1.4),[.5,.35,.25]);add(sphere(.4,10,8),T(-5.4,.7,-1.4),[.2,.55,.25])}
 if(WU){for(let r=0;r<3;r++){add(box(3.6,.06,.5),T(-5.0,.9+r*.75,-1.55),[.55,.38,.22]);for(let k=0;k<8;k++)add(box(.3,.34,.3),T(-6.4+k*.42,1.1+r*.75,-1.55),[[.9,.25,.2],[.95,.8,.2],[.25,.55,.85],[.3,.7,.4]][(k+r)%4])}add(box(1.2,1.5,.6),T(3.9,.75,-1.5),[.9,.93,.95]);add(box(1.0,1.1,.04),T(3.9,.85,-1.18),[.5,.75,.9],{unlit:true,shadow:false})}
+if(RM){add(box(6.4,.02,3.2),T(0,.01,2.0),[.75,.3,.3],{pat:2,shadow:false});add(box(5.8,.02,2.6),T(0,.02,2.0),[.93,.82,.6],{shadow:false});
+ add(box(1.6,2.4,.5),T(-6.2,1.2,-1.5),[.5,.34,.2]);for(let r=0;r<4;r++){add(box(1.5,.05,.46),T(-6.2,.3+r*.6,-1.5),[.4,.27,.15],{shadow:false});for(let k=0;k<7;k++)add(box(.14,.38,.3),T(-6.85+k*.2,.5+r*.6,-1.5),[[.8,.2,.2],[.2,.45,.8],[.9,.75,.2],[.25,.6,.35],[.6,.3,.6]][(k+r)%5],{shadow:false})}
+ [[-1.4,2.5,1.0,.7],[0.2,2.7,.7,.9],[1.4,2.45,.8,.6]].forEach((f,i)=>{add(box(f[2]+.12,f[3]+.12,.05),T(f[0],f[1],-1.85),[.45,.3,.18]);add(box(f[2],f[3],.05),T(f[0],f[1],-1.8),[[.7,.82,.9],[.9,.8,.7],[.75,.88,.75]][i],{shadow:false})});
+ add(cyl(.22,.4,10),T(5.9,0,-.9),[.5,.35,.25]);add(sphere(.5,10,8),T(5.9,.9,-.9),[.2,.55,.25]);add(box(2.2,.5,.5),T(3.2,.25,-1.5),[.45,.3,.2]);}
 // meja depan
 if(WK){add(cyl(.2,.1,12),T(-3.2,1.02,4.3),[.95,.78,.35]);for(let k=0;k<4;k++)add(sphere(.1,8,6),T(-3.2+(k%2)*.12-.06,1.15+(k>1?.1:0),4.3),[.85,.55,.2]);
 add(cyl(.11,.38,10),T(3.6,1.02,4.3),[.82,.82,.85])}
 // uap kopi
-if(!KT)[[-3.6,4.25],[-1.2,4.25],[1.4,4.25],[3.5,4.25]].forEach((c,i)=>{const pf=[0,1,2].map(k=>part(sphere(.06,6,5),I(),[1,1,1],{unlit:true,shadow:false}));ANIM.push(t=>{pf.forEach((o,k)=>{const ph=(t*.45+k/3+i*.21)%1;const sc=Math.max(.05,Math.sin(ph*Math.PI))*1.3;o.base=M(T(c[0]+Math.sin(ph*6+k)*.04,1.22+ph*.55,c[1]),S(sc,sc,sc))})})});
+if(!KT&&!RM)[[-3.6,4.25],[-1.2,4.25],[1.4,4.25],[3.5,4.25]].forEach((c,i)=>{const pf=[0,1,2].map(k=>part(sphere(.06,6,5),I(),[1,1,1],{unlit:true,shadow:false}));ANIM.push(t=>{pf.forEach((o,k)=>{const ph=(t*.45+k/3+i*.21)%1;const sc=Math.max(.05,Math.sin(ph*Math.PI))*1.3;o.base=M(T(c[0]+Math.sin(ph*6+k)*.04,1.22+ph*.55,c[1]),S(sc,sc,sc))})})});
 // kursi plastik depan
 const chr=(x,z,ry,c)=>{const q=(mesh,loc,col)=>add(mesh,M(T(x,0,z),RY(ry),loc),col);q(box(.46,.05,.46),T(0,.45,0),c);q(box(.46,.5,.05),T(0,.7,-.22),c);[[-.18,-.18],[.18,-.18],[-.18,.18],[.18,.18]].forEach(r=>q(cyl(.03,.45,6),T(r[0],0,r[1]),[.7,.7,.72]))};
-if(!KT){chr(-4.4,7.5,.5,[.85,.15,.15]);chr(4.2,7.8,-.4,[.15,.35,.8]);add(box(.8,.5,.8),T(-5.2,.25,7.0),[.7,.5,.3])}
+if(!KT&&!RM){chr(-4.4,7.5,.5,[.85,.15,.15]);chr(4.2,7.8,-.4,[.15,.35,.8]);add(box(.8,.5,.8),T(-5.2,.25,7.0),[.7,.5,.3])}
 }
 // foreground counter (hides sprite bottoms)
-if(L.counter!==false){add(box(10,.98,1.5),T(0,.49,4.1),L.fgBody);add(box(10.4,.08,1.8),T(0,.98,4.1),L.fgTop);add(box(9,.1,.9),T(0,.45,5.5),L.fgBody);
+if(CNT){add(box(10,.98,1.5),T(0,.49,4.1),L.fgBody);add(box(10.4,.08,1.8),T(0,.98,4.1),L.fgTop);add(box(9,.1,.9),T(0,.45,5.5),L.fgBody);
 if(L.props==='cups')[-3.6,-1.2,1.4,3.5].forEach(x=>{add(cyl(.09,.16,12),T(x,1.02,4.25),[.95,.95,.98]);add(cyl(.075,.1,12),T(x,1.04,4.25),[.3,.17,.07])});
+if(L.props==='sofa')[-3.4,-1.2,1.0,3.2].forEach((x,i)=>{add(box(.8,.5,.35),M(T(x,1.25,4.0),RZ((i%2?.12:-.12))),[[.9,.5,.3],[.3,.6,.7],[.9,.75,.3],[.7,.35,.5]][i])});
 if(L.props==='laptop')[-3,-.6,2.2].forEach(x=>{add(box(.6,.04,.4),T(x,1.04,4.3),[.2,.2,.24]);add(box(.6,.4,.03),M(T(x,1.26,4.12),RX(-.25)),[.15,.2,.3])});
 if(L.props==='veg')[-3.4,-1,1.6,3.3].forEach((x,i)=>{for(let k=0;k<6;k++)add(sphere(.11,10,8),T(x+(k%3)*.2-.2,1.1+(k>2?.17:0),4.3),i%2?[.85,.2,.15]:[.35,.7,.25])});
 }
@@ -241,7 +251,7 @@ function poseM(p,flip,x,y,z,rz,sx,sy){const ax=flip?p.w-p.ax:p.ax;return M(T(x,y
 const CAST=JOB.cast;const NC=CAST.length;
 const LAYS={1:[0],2:[-1.05,1.05],3:[-1.85,0,1.85],4:[-2.9,-1,1,2.9]};
 const SCN=(JOB.scenes&&JOB.scenes.length?JOB.scenes:[{loc:JOB.location||'warkop',exterior:JOB.exterior}]).map(s=>({who:CAST.slice(),...s}));
-SCN.forEach(s=>{const L=LOCS[s.loc]||LOCS.warkop;s.cnt=L.counter!==false;const key=s.loc+(s.exterior?'X':'');if(!(key in ENVS)){CURSC=Object.keys(ENVS).length;ENVS[key]=CURSC;buildEnv(s.loc,!!s.exterior);CURSC=-1}s.env=ENVS[key]});
+SCN.forEach(s=>{const L=LOCS[s.loc]||LOCS.warkop;s.cnt=L.counter!==false&&!(s.exterior&&s.loc==='kantor')&&!s.air;const key=s.loc+(s.exterior?'X':'')+(s.air?'W':'');if(!(key in ENVS)){CURSC=Object.keys(ENVS).length;ENVS[key]=CURSC;buildEnv(s.loc,!!s.exterior,!!s.air);CURSC=-1}s.env=ENVS[key]});
 const GAP=.28,LEAD=.5;let cur=LEAD;
 const BEATS=JOB.beats.map((b,i)=>{const words=b.text.trim().split(/\s+/);const wt=words.map(w=>w.length+2);const tot=wt.reduce((a,c)=>a+c,0);const st=cur,en=cur+b.dur;let acc=0;
  const ws=words.map((w,k)=>{const s=st+acc/tot*b.dur;acc+=wt[k];const R=b.wt&&b.wt.length===words.length?b.wt[k]:null;return R?[w.toUpperCase(),st+R[0],st+R[1]]:[w.toUpperCase(),s]});cur=en+GAP;return{...b,st,en,ws,i}});
