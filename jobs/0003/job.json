@@ -1,0 +1,185 @@
+{
+ "id": "0003",
+ "title": "Lembur Gratis, Cinta Perusahaan",
+ "cast": [
+  "Agus",
+  "Dewi",
+  "Rina"
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Jam kerja resmi sudah selesai. Tapi layar komputer belum ada yang dimatikan.",
+   "emosi": "tenang bercerita santai, ada senyum di akhir kalimat",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Agus",
+   "text": "Ibu Dewi, berdasarkan pertimbangan kolektif, pekerjaan ini sebaiknya diselesaikan malam ini juga.",
+   "emosi": "formal berbelit",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Pak Agus, ini sudah jam tujuh malam. Saya belum pulang.",
+   "emosi": "lelah",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 0,
+   "speaker": "Agus",
+   "text": "Itu namanya cinta perusahaan, Bu Dewi. Bukan lembur.",
+   "emosi": "bangga",
+   "style": "semangat"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Kalau bukan lembur, kenapa saya belum makan dari siang?",
+   "emosi": "heran",
+   "style": "kaget"
+  },
+  {
+   "scene": 0,
+   "speaker": "Agus",
+   "text": "Makan bisa ditunda. Semangat tidak boleh ditunda.",
+   "emosi": "santai",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Semangat saya tinggal tiga persen, Pak.",
+   "emosi": "menghela napas",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Kalau cinta, kenapa bayarannya cuma uang makan dua puluh ribu?",
+   "emosi": "sabar tapi tegas",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Agus",
+   "text": "Itu apresiasi. Apresiasi tidak bisa dihitung dengan angka.",
+   "emosi": "gugup",
+   "style": "kaget"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Cicilan motor saya bisa dihitung, Pak. Tiap bulan, tanggal lima.",
+   "emosi": "sinis",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Agus",
+   "text": "Cicilan itu bagian dari perjalanan karier, Bu. Jangan terlalu dipikirkan.",
+   "emosi": "berbelit",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Pak! Kok belum pulang? Nasi sudah dingin, dua kali saya panaskan!",
+   "emosi": "kepo",
+   "style": "semangat"
+  },
+  {
+   "scene": 1,
+   "speaker": "Agus",
+   "text": "Sebentar, Bu. Cinta perusahaan belum selesai.",
+   "emosi": "panik",
+   "style": "kaget"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Cinta perusahaan boleh. Tapi cinta istri jangan terlambat.",
+   "emosi": "kesal",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 2,
+   "speaker": "Agus",
+   "text": "Bu Dewi, mungkin besok kita pulang tepat waktu.",
+   "emosi": "lemas",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Dewi",
+   "text": "Pak Agus yang bilang? Saya catat ya.",
+   "emosi": "kaget",
+   "style": "kaget"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rina",
+   "text": "Aku jemput kalian berdua. Suami dan rekan kerjanya.",
+   "emosi": "tertawa",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Agus",
+   "text": "Baik, Bu. Besok saya pulang tepat waktu.",
+   "emosi": "pasrah",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Dewi",
+   "text": "Janji itu juga masuk apresiasi ya, Pak.",
+   "emosi": "tertawa lelah",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Narator",
+   "text": "Lembur itu tidak gratis. Hanya saja bayarannya sering berupa ucapan terima kasih.",
+   "emosi": "datar, getir, menutup cerita dengan senyum tipis",
+   "style": "santai"
+  }
+ ],
+ "scenes": [
+  {
+   "loc": "kantor",
+   "bab": "",
+   "judul": "Di *kantor*",
+   "who": [
+    "Agus",
+    "Dewi"
+   ],
+   "ket": "Lembur jam tujuh malam"
+  },
+  {
+   "loc": "kantor",
+   "bab": "",
+   "judul": "Di *kantor*",
+   "who": [
+    "Agus",
+    "Dewi",
+    "Rina"
+   ],
+   "ket": "Jam sembilan, belum pulang"
+  },
+  {
+   "loc": "jalan",
+   "bab": "",
+   "judul": "Di *jalan*",
+   "who": [
+    "Agus",
+    "Dewi",
+    "Rina"
+   ],
+   "ket": "Akhirnya pulang"
+  }
+ ]
+}
