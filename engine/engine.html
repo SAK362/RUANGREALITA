@@ -360,7 +360,7 @@ function renderFrame(t){
   g.restore();g.textAlign='center'}
   const fa=Math.max(0,1-(t-sc.t0)/.3,1-(sc.t1-t)/.25);if(fa>0){g.fillStyle=`rgba(0,0,0,${Math.min(1,fa)})`;g.fillRect(0,0,W,H)}}
  {g.textAlign='left';g.font=`700 ${Math.round(W*.038)}px Poppins, sans-serif`;const wa=g.measureText('Ruang').width,wb=g.measureText('Realita').width,pad=W*.03,wpw=wa+wb+pad*2,wph=H*.045,wpy=H*.03;
-  g.fillStyle='rgba(238,236,224,.55)';g.beginPath();g.roundRect(W-wpw,wpy,wpw+40,wph,[wph*.28,0,0,wph*.28]);g.fill();
+  g.fillStyle='rgba(238,236,224,.95)';g.beginPath();g.roundRect(W-wpw,wpy,wpw+40,wph,[wph*.28,0,0,wph*.28]);g.fill();
   g.textBaseline='alphabetic';const wy=wpy+wph*.7;g.fillStyle='rgba(27,36,32,.9)';g.fillText('Ruang',W-wpw+pad,wy);g.fillStyle='rgba(29,122,90,.95)';g.fillText('Realita',W-wpw+pad+wa,wy)}
  return oc.toDataURL('image/jpeg',.92)}
 window.renderFrame=renderFrame;window.READY=true;
