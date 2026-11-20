@@ -17,127 +17,127 @@
   {
    "scene": 0,
    "speaker": "Agus",
-   "text": "Ibu Dewi, berdasarkan pertimbangan kolektif, pekerjaan ini sebaiknya diselesaikan malam ini juga.",
-   "emosi": "formal berbelit",
+   "text": "Bu Dewi, kerjaan ini kita selesaikan malam ini juga ya.",
+   "emosi": "santai tapi sok memimpin, nada naik di akhir, seperti bapak kantoran memberi arahan sambil menguap kecil",
    "style": "santai"
   },
   {
    "scene": 0,
    "speaker": "Dewi",
    "text": "Pak Agus, ini sudah jam tujuh malam. Saya belum pulang.",
-   "emosi": "lelah",
+   "emosi": "lelah, bicara spontan seperti orang asli",
    "style": "mengeluh"
   },
   {
    "scene": 0,
    "speaker": "Agus",
    "text": "Itu namanya cinta perusahaan, Bu Dewi. Bukan lembur.",
-   "emosi": "bangga",
+   "emosi": "bangga, dada membusung, terkekeh kecil di akhir",
    "style": "semangat"
   },
   {
    "scene": 0,
    "speaker": "Dewi",
    "text": "Kalau bukan lembur, kenapa saya belum makan dari siang?",
-   "emosi": "heran",
+   "emosi": "heran, bicara spontan seperti orang asli",
    "style": "kaget"
   },
   {
    "scene": 0,
    "speaker": "Agus",
-   "text": "Makan bisa ditunda. Semangat tidak boleh ditunda.",
-   "emosi": "santai",
+   "text": "Makan bisa nanti. Yang penting semangat dulu.",
+   "emosi": "ringan dan acuh, nada datar santai, bicara sambil mengetik",
    "style": "santai"
   },
   {
    "scene": 0,
    "speaker": "Dewi",
    "text": "Semangat saya tinggal tiga persen, Pak.",
-   "emosi": "menghela napas",
+   "emosi": "menghela napas, bicara spontan seperti orang asli",
    "style": "pasrah"
   },
   {
    "scene": 1,
    "speaker": "Dewi",
    "text": "Kalau cinta, kenapa bayarannya cuma uang makan dua puluh ribu?",
-   "emosi": "sabar tapi tegas",
+   "emosi": "sabar tapi tegas, bicara spontan seperti orang asli",
    "style": "santai"
   },
   {
    "scene": 1,
    "speaker": "Agus",
-   "text": "Itu apresiasi. Apresiasi tidak bisa dihitung dengan angka.",
-   "emosi": "gugup",
+   "text": "Itu apresiasi, Bu. Namanya apresiasi, ya tidak bisa dihitung.",
+   "emosi": "gugup menahan malu, tertawa canggung, bicara agak cepat",
    "style": "kaget"
   },
   {
    "scene": 1,
    "speaker": "Dewi",
    "text": "Cicilan motor saya bisa dihitung, Pak. Tiap bulan, tanggal lima.",
-   "emosi": "sinis",
+   "emosi": "sinis, bicara spontan seperti orang asli",
    "style": "sinis"
   },
   {
    "scene": 1,
    "speaker": "Agus",
-   "text": "Cicilan itu bagian dari perjalanan karier, Bu. Jangan terlalu dipikirkan.",
-   "emosi": "berbelit",
+   "text": "Cicilan itu bagian dari perjuangan, Bu. Jangan terlalu dipikirkan.",
+   "emosi": "ngeles, nada naik, bergumam hmm sebelum bicara",
    "style": "santai"
   },
   {
    "scene": 1,
    "speaker": "Rina",
    "text": "Pak! Kok belum pulang? Nasi sudah dingin, dua kali saya panaskan!",
-   "emosi": "kepo",
+   "emosi": "kepo, bicara spontan seperti orang asli",
    "style": "semangat"
   },
   {
    "scene": 1,
    "speaker": "Agus",
    "text": "Sebentar, Bu. Cinta perusahaan belum selesai.",
-   "emosi": "panik",
+   "emosi": "panik berbisik, takut ketahuan istri, napas pendek",
    "style": "kaget"
   },
   {
    "scene": 1,
    "speaker": "Rina",
    "text": "Cinta perusahaan boleh. Tapi cinta istri jangan terlambat.",
-   "emosi": "kesal",
+   "emosi": "kesal, bicara spontan seperti orang asli",
    "style": "mengeluh"
   },
   {
    "scene": 2,
    "speaker": "Agus",
    "text": "Bu Dewi, mungkin besok kita pulang tepat waktu.",
-   "emosi": "lemas",
+   "emosi": "lemas dan pasrah, menghela napas panjang di awal",
    "style": "pasrah"
   },
   {
    "scene": 2,
    "speaker": "Dewi",
    "text": "Pak Agus yang bilang? Saya catat ya.",
-   "emosi": "kaget",
+   "emosi": "kaget, bicara spontan seperti orang asli",
    "style": "kaget"
   },
   {
    "scene": 2,
    "speaker": "Rina",
    "text": "Aku jemput kalian berdua. Suami dan rekan kerjanya.",
-   "emosi": "tertawa",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
    "style": "santai"
   },
   {
    "scene": 2,
    "speaker": "Agus",
    "text": "Baik, Bu. Besok saya pulang tepat waktu.",
-   "emosi": "pasrah",
+   "emosi": "pasrah berjanji tapi tidak yakin, suara mengecil di akhir",
    "style": "pasrah"
   },
   {
    "scene": 2,
    "speaker": "Dewi",
    "text": "Janji itu juga masuk apresiasi ya, Pak.",
-   "emosi": "tertawa lelah",
+   "emosi": "tertawa lelah, bicara spontan seperti orang asli",
    "style": "santai"
   },
   {
