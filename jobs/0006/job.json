@@ -20,7 +20,8 @@
    "speaker": "Joko",
    "text": "Katanya gas baru datang. Saya antre dari subuh, belum dapat juga.",
    "emosi": "nyinyir, bicara spontan seperti orang asli",
-   "style": "sinis"
+   "style": "sinis",
+   "voice": "Joko"
   },
   {
    "scene": 0,
@@ -48,7 +49,8 @@
    "speaker": "Joko",
    "text": "Bu, yang lupa itu namanya, bukan tabungnya.",
    "emosi": "heran, bicara spontan seperti orang asli",
-   "style": "santai"
+   "style": "santai",
+   "voice": "Joko"
   },
   {
    "scene": 0,
@@ -69,7 +71,8 @@
    "speaker": "Joko",
    "text": "Berarti saya antre dari subuh cuma jadi penonton?",
    "emosi": "mengeluh, bicara spontan seperti orang asli",
-   "style": "mengeluh"
+   "style": "mengeluh",
+   "voice": "Joko"
   },
   {
    "scene": 0,
@@ -104,7 +107,8 @@
    "speaker": "Joko",
    "text": "Bu, saya bawa laptop, bukan tikar.",
    "emosi": "heran, bicara spontan seperti orang asli",
-   "style": "santai"
+   "style": "santai",
+   "voice": "Joko_2"
   },
   {
    "scene": 1,
@@ -118,7 +122,8 @@
    "speaker": "Joko",
    "text": "Sinyalnya hilang. Deadline saya ikut antre.",
    "emosi": "mengeluh, bicara spontan seperti orang asli",
-   "style": "mengeluh"
+   "style": "mengeluh",
+   "voice": "Joko_2"
   },
   {
    "scene": 1,
@@ -132,7 +137,8 @@
    "speaker": "Joko",
    "text": "Jaga berapa lama, Bu? Takutnya sampai gas datang.",
    "emosi": "curiga, bicara spontan seperti orang asli",
-   "style": "sinis"
+   "style": "sinis",
+   "voice": "Joko_2"
   },
   {
    "scene": 1,
@@ -153,7 +159,8 @@
    "speaker": "Joko",
    "text": "Gas belum datang juga. Saya masak mi pakai kompor tungku saja.",
    "emosi": "lesu, bicara spontan seperti orang asli",
-   "style": "mengeluh"
+   "style": "mengeluh",
+   "voice": "Joko_3"
   },
   {
    "scene": 2,
@@ -174,7 +181,8 @@
    "speaker": "Joko",
    "text": "Cabai untuk apa, Bu?",
    "emosi": "heran, bicara spontan seperti orang asli",
-   "style": "santai"
+   "style": "santai",
+   "voice": "Joko_3"
   },
   {
    "scene": 2,
@@ -202,7 +210,8 @@
    "speaker": "Joko",
    "text": "Karena tidak ada yang berani, Bu.",
    "emosi": "pasrah, bicara spontan seperti orang asli",
-   "style": "pasrah"
+   "style": "pasrah",
+   "voice": "Joko_3"
   },
   {
    "scene": 2,
