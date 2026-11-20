@@ -1,0 +1,229 @@
+{
+ "id": "0005",
+ "title": "Grup Keluarga Isinya Apa Saja",
+ "location": "rumah, gang",
+ "cast": [
+  "Budi",
+  "Siti",
+  "Rizky"
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Setiap keluarga punya satu grup. Isinya doa pagi, kabar tidak jelas, dan stiker kucing.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Budi",
+   "text": "Bu, Bapak baru kirim kabar penting ke grup keluarga. Semua harus tahu.",
+   "emosi": "bangga, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 0,
+   "speaker": "Siti",
+   "text": "Kabar apa, Pak? Jangan bilang pesan berantai lagi.",
+   "emosi": "curiga, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 0,
+   "speaker": "Budi",
+   "text": "Katanya kalau tidak disebar ke sepuluh grup, rezeki jadi seret.",
+   "emosi": "semangat, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rizky",
+   "text": "Pak, Rizky cari di internet. Kabar itu sudah dibantah dua hari lalu.",
+   "emosi": "polos, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Budi",
+   "text": "Dibantah? Tapi yang kirim ke Bapak itu Pak Haji.",
+   "emosi": "kaget, bicara spontan seperti orang asli",
+   "style": "kaget"
+  },
+  {
+   "scene": 0,
+   "speaker": "Siti",
+   "text": "Pak Haji orangnya baik. Tapi baik belum tentu benar, Pak.",
+   "emosi": "praktis, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Budi",
+   "text": "Berarti kiriman Bapak tadi pagi sudah sampai ke dua puluh grup?",
+   "emosi": "malu, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rizky",
+   "text": "Dua puluh satu, Pak. Grup alumni SD juga kena.",
+   "emosi": "menahan tawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Budi",
+   "text": "Wah. Pantas ada yang membalas pakai stiker orang pingsan.",
+   "emosi": "pasrah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 0,
+   "speaker": "Siti",
+   "text": "Itu bukan stiker pingsan, Pak. Itu stiker orang kesal.",
+   "emosi": "menghela napas, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rizky",
+   "text": "Kemarin Bapak juga kirim stiker ulang tahun ke grup duka.",
+   "emosi": "geli, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Budi",
+   "text": "Itu salah pencet, Nak. Stikernya padahal lucu.",
+   "emosi": "tersipu, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Budi",
+   "text": "Bapak kira kucing itu sedang berdoa.",
+   "emosi": "membela diri, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rizky",
+   "text": "Pak, itu kucing sedang pesta.",
+   "emosi": "menahan tawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Siti",
+   "text": "Mulai sekarang baca dulu sebelum kirim, ya.",
+   "emosi": "menggeleng, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Siti",
+   "text": "Pesan berantai kita periksa dulu bersama. Kalau ragu, jangan disebar.",
+   "emosi": "praktis, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rizky",
+   "text": "Rizky jadi petugas pemeriksa, ya! Gajinya apa, Bu?",
+   "emosi": "semangat, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Gajinya kopi satu gelas di warkop. Bapak yang traktir.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Siti",
+   "text": "Boleh. Asal Bapak janji berhenti kirim stiker kucing.",
+   "emosi": "tersenyum, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Janji. Tapi stiker kucing tadi lucu sekali, Bu.",
+   "emosi": "jujur, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rizky",
+   "text": "Nanti Rizky buatkan stiker khusus Bapak, tanpa kucing.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Terima kasih, Nak. Isinya gambar Bapak sedang berpikir.",
+   "emosi": "terharu, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Siti",
+   "text": "Stiker Bapak berpikir itu loading-nya lama sekali.",
+   "emosi": "menggoda, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Namanya juga guru honorer. Mikirnya hemat kuota.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Narator",
+   "text": "Grup keluarga isinya jarang penting. Tapi kalau tiba-tiba sepi, semua langsung bertanya.",
+   "emosi": "hangat, bicara spontan seperti orang asli",
+   "style": "santai"
+  }
+ ],
+ "scenes": [
+  {
+   "loc": "rumah",
+   "bab": "",
+   "judul": "Di *rumah*",
+   "who": [
+    "Budi",
+    "Siti",
+    "Rizky"
+   ],
+   "ket": "Kabar berantai dari Pak Haji"
+  },
+  {
+   "loc": "rumah",
+   "bab": "",
+   "judul": "Di *rumah*",
+   "who": [
+    "Rizky",
+    "Budi",
+    "Siti"
+   ],
+   "ket": "Stiker kucing di grup duka"
+  },
+  {
+   "loc": "gang",
+   "bab": "",
+   "judul": "Di *gang*",
+   "who": [
+    "Siti",
+    "Rizky",
+    "Budi"
+   ],
+   "ket": "Janji berhenti kirim stiker"
+  }
+ ]
+}

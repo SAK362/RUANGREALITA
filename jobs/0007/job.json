@@ -1,0 +1,228 @@
+{
+ "id": "0007",
+ "title": "Hujan Sepuluh Menit, Macet Tiga Jam",
+ "location": "jalan, warkop",
+ "cast": [
+  "Dewi",
+  "Udin",
+  "Budi"
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Di kota ini, hujan sepuluh menit bisa jadi macet tiga jam.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Din, kendaraan tidak ada yang bergerak. Saya ada rapat jam delapan.",
+   "emosi": "cemas, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 0,
+   "speaker": "Udin",
+   "text": "Bu, ini sudah jam sembilan. Rapatnya selesai tanpa Ibu.",
+   "emosi": "capek, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Ya sudah. Saya sabar saja. Tinggal satu jam lagi.",
+   "emosi": "pasrah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 0,
+   "speaker": "Udin",
+   "text": "Kalau tadi saya ambil jalan tikus, kita sudah sampai.",
+   "emosi": "menyeringai, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Kenapa tidak bilang dari tadi, Din?",
+   "emosi": "kesal, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 0,
+   "speaker": "Udin",
+   "text": "Saya lupa, jalan tikusnya juga ikut tergenang.",
+   "emosi": "jujur, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Jadi jalan tikus dan jalan raya sama-sama macet.",
+   "emosi": "menghela napas, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Motor saya titip di warung depan. Pesanan batal, ongkos hilang.",
+   "emosi": "lesu, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Budi",
+   "text": "Bu Dewi? Din? Kalian juga terjebak?",
+   "emosi": "basah kuyup, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Pak Budi guru saja bisa telat, apalagi kami.",
+   "emosi": "menyeringai, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Budi",
+   "text": "Hujan itu rezeki, Din. Macetnya yang jadi ujian.",
+   "emosi": "bijak, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Ujiannya lebih lama dari ulangan semester, Pak.",
+   "emosi": "geli, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Budi",
+   "text": "Murid Bapak pasti senang. Jam pelajaran pertama batal.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Kalau pesanan batal, saya yang tidak senang.",
+   "emosi": "mengeluh, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Aplikasimu bilang apa, Din?",
+   "emosi": "menyindir, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Katanya, mohon bersabar. Padahal saya sudah paling sabar.",
+   "emosi": "mengeluh, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Sudah, mampir warkop dulu. Kopi hangat menunggu.",
+   "emosi": "mengajak, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 2,
+   "speaker": "Udin",
+   "text": "Macet sambil ngopi itu hemat. Bensin tidak terbuang.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Dewi",
+   "text": "Baik. Rapat kita pindah ke warkop saja.",
+   "emosi": "menyerah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Agendanya satu. Menunggu hujan reda.",
+   "emosi": "bijak, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Udin",
+   "text": "Notulennya saya. Isinya satu kata, sabar.",
+   "emosi": "geli, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Dewi",
+   "text": "Bapak ketua, saya sekretaris, Udin bagian konsumsi.",
+   "emosi": "tertawa lelah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Budi",
+   "text": "Konsumsinya Udin yang bayar, ya.",
+   "emosi": "tersenyum, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Udin",
+   "text": "Lho, saya baru kehilangan ongkos, Pak!",
+   "emosi": "kaget, bicara spontan seperti orang asli",
+   "style": "kaget"
+  },
+  {
+   "scene": 2,
+   "speaker": "Narator",
+   "text": "Macet itu menyebalkan. Tapi cerita terbaik sering lahir di tengah macet.",
+   "emosi": "datar, bicara spontan seperti orang asli",
+   "style": "santai"
+  }
+ ],
+ "scenes": [
+  {
+   "loc": "jalan",
+   "bab": "",
+   "judul": "Di *jalan*",
+   "who": [
+    "Dewi",
+    "Udin"
+   ],
+   "ket": "Macet total setelah hujan"
+  },
+  {
+   "loc": "jalan",
+   "bab": "",
+   "judul": "Di *jalan*",
+   "who": [
+    "Udin",
+    "Budi",
+    "Dewi"
+   ],
+   "ket": "Berteduh bertiga di pinggir jalan"
+  },
+  {
+   "loc": "warkop",
+   "bab": "",
+   "judul": "Di *warkop*",
+   "who": [
+    "Budi",
+    "Udin",
+    "Dewi"
+   ],
+   "ket": "Rapat darurat di warkop"
+  }
+ ]
+}

@@ -1,0 +1,229 @@
+{
+ "id": "0008",
+ "title": "Cicilan Nol Persen, Utang Seratus Persen",
+ "location": "warkop, kantor",
+ "cast": [
+  "Maya",
+  "Joko",
+  "Dewi"
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Cicilan nol persen itu seperti pacar nol komitmen. Awalnya manis, ujungnya tagihan.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Maya",
+   "text": "Aku baru beli ponsel! Cicilan nol persen, cuma dua belas bulan.",
+   "emosi": "semangat, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 0,
+   "speaker": "Joko",
+   "text": "Nol persen itu bukan gratis, Maya. Itu utang yang sopan.",
+   "emosi": "sinis, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 0,
+   "speaker": "Maya",
+   "text": "Tapi bulanannya cuma tujuh ratus ribu. Murah banget, kan?",
+   "emosi": "membela diri, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Tujuh ratus ribu kali dua belas, Maya. Hitung dulu.",
+   "emosi": "lelah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 0,
+   "speaker": "Maya",
+   "text": "Delapan juta empat ratus ribu... eh, itu bukan murah, ya?",
+   "emosi": "bingung, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 0,
+   "speaker": "Joko",
+   "text": "Selamat datang di dunia cicilan, Maya.",
+   "emosi": "menyeringai, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 0,
+   "speaker": "Maya",
+   "text": "Terus ada biaya admin tiga puluh ribu tiap bulan.",
+   "emosi": "kaget, bicara spontan seperti orang asli",
+   "style": "kaget"
+  },
+  {
+   "scene": 0,
+   "speaker": "Dewi",
+   "text": "Itu dia nol persennya. Nol persen bunga, seratus persen biaya.",
+   "emosi": "menghela napas, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Ayo ke kantorku. Kutunjukkan slip potongan gajiku.",
+   "emosi": "sabar, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Maya",
+   "text": "Bu Dewi juga punya cicilan?",
+   "emosi": "terkejut, bicara spontan seperti orang asli",
+   "style": "kaget"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Tiga. Motor, panci, dan pinjaman koperasi kantor.",
+   "emosi": "pasrah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 1,
+   "speaker": "Joko",
+   "text": "Panci pakai cicilan?",
+   "emosi": "heran, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Panci anti lengket. Katanya awet seumur hidup.",
+   "emosi": "membela diri, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Maya",
+   "text": "Tapi pancinya sudah lengket, Bu?",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Lengket sejak bulan kedua. Cicilannya yang awet.",
+   "emosi": "kesal, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Joko",
+   "text": "Cicilan memang lebih awet dari barangnya.",
+   "emosi": "menyindir, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Dewi",
+   "text": "Tenang saja. Cukup catat, bayar duluan, baru jajan.",
+   "emosi": "tegas, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 2,
+   "speaker": "Maya",
+   "text": "Oke, mulai sekarang aku catat semua cicilan.",
+   "emosi": "semangat, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Catat di mana? Di aplikasi?",
+   "emosi": "penasaran, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Maya",
+   "text": "Di buku tulis. Aplikasi bikin aku tergoda belanja.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Dewi",
+   "text": "Pilihan bijak, Maya. Buku tulis tidak punya promo.",
+   "emosi": "tersenyum, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Saya juga punya satu cicilan. Tapi belum berani cerita.",
+   "emosi": "jujur, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Kursi gaming. Katanya bikin kerja lebih fokus.",
+   "emosi": "malu, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Dewi",
+   "text": "Fokusnya ke cicilan, Jok.",
+   "emosi": "menahan tawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Narator",
+   "text": "Nol persen itu hanya angka. Yang tidak nol adalah tagihan tiap bulan.",
+   "emosi": "datar, bicara spontan seperti orang asli",
+   "style": "santai"
+  }
+ ],
+ "scenes": [
+  {
+   "loc": "warkop",
+   "bab": "",
+   "judul": "Di *warkop*",
+   "who": [
+    "Maya",
+    "Joko",
+    "Dewi"
+   ],
+   "ket": "Ponsel baru cicilan nol persen"
+  },
+  {
+   "loc": "kantor",
+   "bab": "",
+   "judul": "Di *kantor*",
+   "who": [
+    "Dewi",
+    "Maya",
+    "Joko"
+   ],
+   "ket": "Slip potongan gaji Bu Dewi"
+  },
+  {
+   "loc": "warkop",
+   "bab": "",
+   "judul": "Di *warkop*",
+   "who": [
+    "Maya",
+    "Joko",
+    "Dewi"
+   ],
+   "ket": "Catat cicilan di buku tulis"
+  }
+ ]
+}

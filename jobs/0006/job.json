@@ -1,0 +1,229 @@
+{
+ "id": "0006",
+ "title": "Antre Gas, Antre Sabar",
+ "location": "pangkalan, gang, warkop",
+ "cast": [
+  "Joko",
+  "Nina",
+  "Rina"
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Pagi di pangkalan gas. Antreannya lebih panjang dari antrean tiket konser.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Joko",
+   "text": "Katanya gas baru datang. Saya antre dari subuh, belum dapat juga.",
+   "emosi": "nyinyir, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 0,
+   "speaker": "Nina",
+   "text": "Saya duluan ya! Tiga tabung, untuk tetangga juga.",
+   "emosi": "ngotot, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rina",
+   "text": "Bu Nina, tetangganya siapa saja? Kok banyak sekali?",
+   "emosi": "kepo, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Nina",
+   "text": "Tetangga sebelah, tetangga depan, dan tetangga yang saya lupa namanya.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Joko",
+   "text": "Bu, yang lupa itu namanya, bukan tabungnya.",
+   "emosi": "heran, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rina",
+   "text": "Hati-hati, Bu. Aturannya satu orang, satu tabung.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Nina",
+   "text": "Aturan itu untuk orang yang tidak punya tetangga.",
+   "emosi": "membela diri, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Joko",
+   "text": "Berarti saya antre dari subuh cuma jadi penonton?",
+   "emosi": "mengeluh, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Tabung kosong titip di sini dulu. Gas datang jam sepuluh.",
+   "emosi": "menawar, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Sekarang masih jam tujuh. Kita antre tiga jam?",
+   "emosi": "kepo, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Antre itu seni, Rin. Yang penting punya tikar.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Joko",
+   "text": "Bu, saya bawa laptop, bukan tikar.",
+   "emosi": "heran, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Joko",
+   "text": "Sinyalnya hilang. Deadline saya ikut antre.",
+   "emosi": "mengeluh, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Joko, sambil menunggu, bantu jaga tabung saya sebentar.",
+   "emosi": "menawar, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Joko",
+   "text": "Jaga berapa lama, Bu? Takutnya sampai gas datang.",
+   "emosi": "curiga, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rina",
+   "text": "Bu Nina, tabung yang satu lagi itu punya siapa?",
+   "emosi": "kepo, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Nina",
+   "text": "Itu tabung titipan. Pemiliknya belum saya kenal.",
+   "emosi": "cuek, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Gas belum datang juga. Saya masak mi pakai kompor tungku saja.",
+   "emosi": "lesu, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Nina",
+   "text": "Besok saya bawa tikar, termos, dan cabai.",
+   "emosi": "tenang, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Cabai untuk apa, Bu?",
+   "emosi": "heran, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Nina",
+   "text": "Sekalian menawar ke penjual gas. Siapa tahu bisa turun.",
+   "emosi": "geli, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rina",
+   "text": "Bu, gas bersubsidi itu tidak bisa ditawar.",
+   "emosi": "menahan tawa, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Nina",
+   "text": "Tidak bisa? Kenapa tidak ada yang bilang dari dulu?",
+   "emosi": "kaget, bicara spontan seperti orang asli",
+   "style": "kaget"
+  },
+  {
+   "scene": 2,
+   "speaker": "Joko",
+   "text": "Karena tidak ada yang berani, Bu.",
+   "emosi": "pasrah, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Narator",
+   "text": "Yang langka bukan cuma gasnya. Rasa sabar juga makin sulit dicari.",
+   "emosi": "datar, bicara spontan seperti orang asli",
+   "style": "santai"
+  }
+ ],
+ "scenes": [
+  {
+   "loc": "pangkalan",
+   "bab": "",
+   "judul": "Di *pangkalan*",
+   "who": [
+    "Joko",
+    "Nina",
+    "Rina"
+   ],
+   "ket": "Antre gas dari subuh"
+  },
+  {
+   "loc": "gang",
+   "bab": "",
+   "judul": "Di *gang*",
+   "who": [
+    "Nina",
+    "Rina",
+    "Joko"
+   ],
+   "ket": "Menunggu gas datang jam sepuluh"
+  },
+  {
+   "loc": "warkop",
+   "bab": "",
+   "judul": "Di *warkop*",
+   "who": [
+    "Joko",
+    "Nina",
+    "Rina"
+   ],
+   "ket": "Gas belum datang juga"
+  }
+ ]
+}
