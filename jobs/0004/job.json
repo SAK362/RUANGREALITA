@@ -1,0 +1,187 @@
+{
+ "id": "0004",
+ "title": "Paket Datang, Dompet Menghilang",
+ "location": "warkop, gang",
+ "cast": [
+  "Siti",
+  "Rizky",
+  "Udin"
+ ],
+ "beats": [
+  {
+   "scene": 0,
+   "speaker": "Narator",
+   "text": "Belanja online itu mudah. Yang susah itu menjelaskan isi paketnya.",
+   "emosi": "tenang bercerita santai, ada senyum di akhir kalimat",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Udin",
+   "text": "Paket atas nama Rizky! Bayar di tempat, dua ratus tiga puluh ribu!",
+   "emosi": "ramah, capek, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 0,
+   "speaker": "Siti",
+   "text": "Dua ratus tiga puluh ribu? Rizky, kamu beli apa?",
+   "emosi": "kaget, bicara spontan seperti orang asli",
+   "style": "kaget"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rizky",
+   "text": "Cuma gantungan kunci, Bu. Satu biji. Harganya tiga puluh ribu.",
+   "emosi": "polos, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 0,
+   "speaker": "Siti",
+   "text": "Kamu beli pakai uang siapa, Nak?",
+   "emosi": "curiga, bicara spontan seperti orang asli",
+   "style": "sinis"
+  },
+  {
+   "scene": 0,
+   "speaker": "Rizky",
+   "text": "Uang jajan, Bu. Dikumpulkan dua bulan.",
+   "emosi": "menunduk, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 0,
+   "speaker": "Udin",
+   "text": "Bu, kalau tidak jadi, paketnya saya bawa pulang?",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Siti",
+   "text": "Lalu dua ratus ribunya apa?",
+   "emosi": "praktis, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Ongkir, Bu. Barangnya murah, ongkirnya yang mahal.",
+   "emosi": "santai, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rizky",
+   "text": "Tadi di aplikasi tulisannya gratis ongkir, Bu.",
+   "emosi": "membela diri, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 1,
+   "speaker": "Siti",
+   "text": "Gratis ongkir itu pindah ke harga barang, Nak.",
+   "emosi": "menghela napas, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Rizky",
+   "text": "Tapi tokonya bintang lima, Bu.",
+   "emosi": "sedih, bicara spontan seperti orang asli",
+   "style": "mengeluh"
+  },
+  {
+   "scene": 1,
+   "speaker": "Udin",
+   "text": "Bintangnya banyak, ongkirnya juga.",
+   "emosi": "tertawa, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 1,
+   "speaker": "Siti",
+   "text": "Seratus ribu sekarang, sisanya tanggal gajian.",
+   "emosi": "menghitung, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Udin",
+   "text": "Bu Siti, saya kasih diskon cerita saja. Saya antar gratis lain kali.",
+   "emosi": "menyeringai, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 2,
+   "speaker": "Siti",
+   "text": "Terima kasih, Din. Kopimu hari ini gratis.",
+   "emosi": "tersenyum, bicara spontan seperti orang asli",
+   "style": "semangat"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rizky",
+   "text": "Jadi gantungan kunciku boleh kubawa pulang, Bu?",
+   "emosi": "lega, bicara spontan seperti orang asli",
+   "style": "pasrah"
+  },
+  {
+   "scene": 2,
+   "speaker": "Siti",
+   "text": "Boleh. Lain kali tanya Ibu dulu.",
+   "emosi": "tegas, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Rizky",
+   "text": "Baik, Bu. Tapi gantungan kuncinya lucu, kan?",
+   "emosi": "polos, bicara spontan seperti orang asli",
+   "style": "santai"
+  },
+  {
+   "scene": 2,
+   "speaker": "Narator",
+   "text": "Gratis ongkir itu hanya pindah tempat. Ongkirnya masuk ke harga barang.",
+   "emosi": "datar, getir, menutup cerita dengan senyum tipis",
+   "style": "santai"
+  }
+ ],
+ "scenes": [
+  {
+   "loc": "warkop",
+   "bab": "",
+   "judul": "Di *warkop*",
+   "who": [
+    "Udin",
+    "Siti",
+    "Rizky"
+   ],
+   "ket": "Paket COD datang pagi hari"
+  },
+  {
+   "loc": "warkop",
+   "bab": "",
+   "judul": "Di *warkop*",
+   "who": [
+    "Siti",
+    "Rizky",
+    "Udin"
+   ],
+   "ket": "Ongkir lebih mahal dari barang"
+  },
+  {
+   "loc": "gang",
+   "bab": "",
+   "judul": "Di *gang*",
+   "who": [
+    "Siti",
+    "Rizky",
+    "Udin"
+   ],
+   "ket": "Kopi gratis, gantungan kunci pulang"
+  }
+ ]
+}
