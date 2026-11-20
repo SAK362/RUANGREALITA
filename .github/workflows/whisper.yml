@@ -1,5 +1,5 @@
 name: whisper-ruangrealita
-# Hanya Whisper: WAV per beat -> jobs/<id>/words.json. Tidak ada render.
+# Whisper (WAV per beat -> words.json), lalu render MP4 + voiceover + narasi, diunggah ke GitHub Release job-<id>, lalu callback ke n8n.
 on:
   workflow_dispatch:
     inputs:
@@ -55,17 +55,63 @@ jobs:
           git commit -m "words ${{ inputs.job_id }}" || echo "tidak ada perubahan"
           git pull --rebase origin "${GITHUB_REF_NAME}" || true
           git push
-  notify:
+  render:
     needs: align
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.ref_name }}" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install ffmpeg dan Playwright
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y ffmpeg zip unzip
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Buka bundel
+        run: unzip -oq "jobs/${{ inputs.job_id }}/bundle_${{ inputs.job_id }}.zip" -d "jobs/${{ inputs.job_id }}/"
+      - name: Render video 720x1280
+        run: |
+          mkdir -p out
+          node render.js "jobs/${{ inputs.job_id }}/job.json" "out/${{ inputs.job_id }}.mp4" --workers 4 --fps 30 --w 720 --h 1280
+          ffprobe -v error -show_entries format=duration -of csv=p=0 "out/${{ inputs.job_id }}.mp4"
+      - name: Voiceover dan narasi
+        run: |
+          ID="${{ inputs.job_id }}"
+          ffmpeg -y -loglevel error -i "out/$ID.mp4" -vn -c:a libmp3lame -q:a 3 "out/voiceover_$ID.mp3"
+          python3 - "$ID" <<'PY'
+          import json,sys
+          i=sys.argv[1]; j=json.load(open(f"jobs/{i}/job.json",encoding="utf-8"))
+          L=[f"{i} | {j.get('title','')}",""]
+          sc=j.get("scenes") or []; last=-1
+          for b in j["beats"]:
+              s=b.get("scene",0)
+              if s!=last:
+                  last=s; m=sc[s] if s<len(sc) else {}
+                  L+=["",f"ADEGAN {s+1} ({m.get('loc','')}) {m.get('ket','')}".rstrip()]
+              L.append(f"{b['speaker']}: {b['text']}")
+          open(f"out/narasi_{i}.txt","w",encoding="utf-8").write("\n".join(L).strip()+"\n")
+          PY
+      - name: Unggah ke GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ID="${{ inputs.job_id }}"
+          gh release delete "job-$ID" -y --cleanup-tag || true
+          gh release create "job-$ID" "out/$ID.mp4" "out/voiceover_$ID.mp3" "out/narasi_$ID.txt" \
+            --title "job $ID" --notes "Output otomatis RUANGREALITA $ID"
+  notify:
+    needs: [align, render]
     if: always() && inputs.callback_url != ''
     runs-on: ubuntu-latest
     steps:
       - name: Panggil n8n
         env:
-          RESULT: ${{ needs.align.result }}
+          RESULT: ${{ needs.align.result }}-${{ needs.render.result }}
           CALLBACK_KEY: ${{ secrets.CALLBACK_KEY }}
         run: |
-          STATUS=failed; [ "$RESULT" = "success" ] && STATUS=success
+          STATUS=failed; [ "$RESULT" = "success-success" ] && STATUS=success
           curl -sS -X POST "${{ inputs.callback_url }}" \
             -H "Content-Type: application/json" -H "x-callback-key: ${CALLBACK_KEY}" \
-            -d "{\"job_id\":\"${{ inputs.job_id }}\",\"status\":\"${STATUS}\",\"run_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}"
+            -d "{\"job_id\":\"${{ inputs.job_id }}\",\"status\":\"${STATUS}\",\"tag\":\"job-${{ inputs.job_id }}\",\"run_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}"
